@@ -97,12 +97,123 @@ inequality and equality constraints.
 
 \end{frame}
 
+%%% Simplex Method 1
+\begin{frame}{Background - Geometrical Interpretation}
+    Every constraint corresponds to a hyperplane (a halfspace, precisely).
+
+    The intersection of several halfspaces gives us a polyhedron.
+
+    We tend to optimize over this feasible area.
+\end{frame}
+
 \begin{frame}{Background - Simplex Method}
     %% Simplex method is an impressive algorithm that solves lp in an intuitive way.
     %% 
-    Fact: Optimal solution can always be achieved by some vertex. \\~\
+    \begin{exampleblock}{Fact}
+    Optimal solution can always be achieved by some vertex.
+    \end{exampleblock}
 
-    Each step in Simplex Method move from one vertex to the next with larger objective.
+    \begin{exampleblock}{Fact}
+    If there exists any vertex with better objective value than current vertex, we always have a neighbour vertex with better value.
+    \end{exampleblock}
+
+    Firstly select any starting vertex. \\~\
+
+    Each step in Simplex Method move from one vertex to its neighbour with larger objective.
+
+    % If we currently we are not in optimal vertex, there are always a neighbour vertex with better objective.
+    % This can be proved intuitively with this sketch: let's assume the feasible solution (the polyhedron) is full-dimensioned.
+    % Then for any vertex, if we construct a ball centering at that vertex, the intersection of ball and polyhedra
+    % would be also full-dimensioned.
+    % We only need to show if we take any vertex as the origin and consider the ray formed by origin and its neighbour,
+    % it gives a cone, identical to the one formed by considering the intersection of all hyperplane incident to origin.
+
+
+\end{frame}
+
+%%% Simplex Method 2
+
+\begin{frame}{Background - Simplex Method}
+    Firstly select any starting vertex. \\~\
+
+    Each step in Simplex Method move from one vertex to its neighbour with larger objective.
+
+    \begin{figure}[r]
+        \includegraphics[width=0.4\linewidth]{pics/simplex_method.png}
+        % \caption{}
+        % \label{figsmallcircle}
+    \end{figure}
+
+    % If we currently we are not in optimal vertex, there are always a neighbour vertex with better objective.
+    % This can be proved intuitively with this sketch: let's assume the feasible solution (the polyhedron) is full-dimensioned.
+    % Then for any vertex, if we construct a ball centering at that vertex, the intersection of ball and polyhedra
+    % would be also full-dimensioned.
+    % We only need to show if we take any vertex as the origin and consider the ray formed by origin and its neighbour,
+    % it gives a cone, identical to the one formed by considering the intersection of all hyperplane incident to origin.
+
+
+\end{frame}
+
+\begin{frame}{Background - Simplex Method Running Time}
+
+    Add here the complexity and running time tables for three methods. \\~\
+
+    The three most famous algorithms for LP: Interior Method, Ellipsoid Method, Simplex Method.
+
+    Even though we have Interior Method and Ellipsoid Method, the most widely used algorithm is still Simplex Method 
+    due to its efficiency in practice.
+    % If we currently we are not in optimal vertex, there are always a neighbour vertex with better objective.
+    % This can be proved intuitively with this sketch: let's assume the feasible solution (the polyhedron) is full-dimensioned.
+    % Then for any vertex, if we construct a ball centering at that vertex, the intersection of ball and polyhedra
+    % would be also full-dimensioned.
+    % We only need to show if we take any vertex as the origin and consider the ray formed by origin and its neighbour,
+    % it gives a cone, identical to the one formed by considering the intersection of all hyperplane incident to origin.
+
+
+\end{frame}
+
+\begin{frame}{Previous Work}
+    there are some previous work showing that
+    if $d$, the dimension or i.e. the number of variables in LP, is considered as a constant,
+    then LP can be solved in time linear to $m$, the number of constraints.
+
+    However these methods are: complicated; and running time superexponential to $d$: e.g. $3^{d^2}$.
+
+    we also have a simple algorithm with complexity $O(d^2m) + (\log m)O(d)^{d/2 + O(1)} + O(d^4 \sqrt{m} \log m)$
+    but the analysis is involved.
+
+    The presented algorithm gives a simple procedure and complexity $O(d!m)$.
+    
+\end{frame}
+
+\begin{frame}
+    We were talking about other algorithms for LP but what do these have to do with this paper?
+
+    and we talked so much about simplex method.
+
+    But unfortunately it has nothing to do with what we are going to present.
+
+    This algorithm makes use of a very simple idea:
+
+    Suppose we delete one constraint, and somehow managed to solve the new LP. 
+    Then we check if the opt position conforms with the deleted constraint.
+
+    If it doesn't violate the constraint, then we are done. (this is obvious, 
+    since we have a larger feasible area, we certainly have better opt value)
+
+    If it violates the constraint, then the opt value lies on the hyperplane
+    corresponding to this constraint.
+    This is because if we consider the points along the line connecting 
+    new LP's opt point and original LP's opt point, by convexity we have that
+    we have a better point on the hyperplane.
+    This is also not bad, at least we decrease the dimension (we restrict the problem
+    on a hyperplane, which has dimension $d - 1$), which gives us the intuition to recurssively analyse.
+
+    Reducing dimension is certainly something good for computation but how much cost it would take to "transform"?
+
+    Let's analyse the complexity of this step.
+
+
 \end{frame}
 
 \begin{frame}{Backward Analysis}
