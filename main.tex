@@ -72,497 +72,507 @@
 \frame{\titlepage}
 %---------------------------------------------------------
 
-
 \begin{frame}{Background}
-    Linear programming captures one of the most canonical and influential constrained optimization problems. \\~\
-    
-    More precisely, it asks to maximize or minimize a linear objective under linear
-inequality and equality constraints.
+	Linear programming captures one of the most canonical and influential constrained optimization problems. \\~\
 
-% \begin{figure}[ht]
-%     \centering
-%     \includegraphics[width=.4\linewidth]{pre_1_1.png}
-%     \caption{Five random points on a plane}
-%     \label{fig11}
-% \end{figure}
+	More precisely, it asks to maximize or minimize a linear objective under linear
+	inequality and equality constraints.
 
-\begin{align*}
-    \max / \min \; c^T  &x \\
-   \text{subject to} \;\;\; A&x \le e \\
-    B&x \ge f \\
-    C&x = g
-\end{align*}
+	% \begin{figure}[ht]
+	%     \centering
+	%     \includegraphics[width=.4\linewidth]{pre_1_1.png}
+	%     \caption{Five random points on a plane}
+	%     \label{fig11}
+	% \end{figure}
 
-% this can be interpreted as maximizing profits we get from manufacturing some products with prices respectively and a certain budgets e
+	\begin{align*}
+		\max / \min \; c^T         & x       \\
+		\text{subject to} \;\;\; A & x \le e \\
+		B                          & x \ge f \\
+		C                          & x = g
+	\end{align*}
+
+	% this can be interpreted as maximizing profits we get from manufacturing some products with prices respectively and a certain budgets e
 
 \end{frame}
 
 %%% Simplex Method 1
 \begin{frame}{Background - Geometrical Interpretation}
-    Every constraint corresponds to a hyperplane (a halfspace, precisely).
+	Every constraint corresponds to a hyperplane (a halfspace, precisely).
 
-    The intersection of several halfspaces gives us a polyhedron.
+	The intersection of several halfspaces gives us a polyhedron.
 
-    We tend to optimize over this feasible area.
+	We tend to optimize over this feasible area.
 \end{frame}
 
 \begin{frame}{Background - Simplex Method}
-    %% Simplex method is an impressive algorithm that solves lp in an intuitive way.
-    %% 
-    \begin{exampleblock}{Fact}
-    Optimal solution can always be achieved by some vertex.
-    \end{exampleblock}
+	%% Simplex method is an impressive algorithm that solves lp in an intuitive way.
+	%% 
+	\begin{exampleblock}{Fact}
+		Optimal solution can always be achieved by some vertex.
+	\end{exampleblock}
 
-    \begin{exampleblock}{Fact}
-    If there exists any vertex with better objective value than current vertex, we always have a neighbour vertex with better value.
-    \end{exampleblock}
+	\begin{exampleblock}{Fact}
+		If there exists any vertex with better objective value than current vertex, we always have a neighbour vertex with better value.
+	\end{exampleblock}
 
-    Firstly select any starting vertex. \\~\
+	Firstly select any starting vertex. \\~\
 
-    Each step in Simplex Method move from one vertex to its neighbour with larger objective.
+	Each step in Simplex Method move from one vertex to its neighbour with larger objective.
 
-    % If we currently we are not in optimal vertex, there are always a neighbour vertex with better objective.
-    % This can be proved intuitively with this sketch: let's assume the feasible solution (the polyhedron) is full-dimensioned.
-    % Then for any vertex, if we construct a ball centering at that vertex, the intersection of ball and polyhedra
-    % would be also full-dimensioned.
-    % We only need to show if we take any vertex as the origin and consider the ray formed by origin and its neighbour,
-    % it gives a cone, identical to the one formed by considering the intersection of all hyperplane incident to origin.
-
+	% If we currently we are not in optimal vertex, there are always a neighbour vertex with better objective.
+	% This can be proved intuitively with this sketch: let's assume the feasible solution (the polyhedron) is full-dimensioned.
+	% Then for any vertex, if we construct a ball centering at that vertex, the intersection of ball and polyhedra
+	% would be also full-dimensioned.
+	% We only need to show if we take any vertex as the origin and consider the ray formed by origin and its neighbour,
+	% it gives a cone, identical to the one formed by considering the intersection of all hyperplane incident to origin.
 
 \end{frame}
 
 %%% Simplex Method 2
 
 \begin{frame}{Background - Simplex Method}
-    Firstly select any starting vertex. \\~\
+	Firstly select any starting vertex. \\~\
 
-    Each step in Simplex Method move from one vertex to its neighbour with larger objective.
+	Each step in Simplex Method move from one vertex to its neighbour with larger objective.
 
-    \begin{figure}[r]
-        \includegraphics[width=0.4\linewidth]{pics/simplex_method.png}
-        % \caption{}
-        % \label{figsmallcircle}
-    \end{figure}
+	\begin{figure}[r]
+		\includegraphics[width=0.4\linewidth]{pics/simplex_method.png}
+		% \caption{}
+		% \label{figsmallcircle}
+	\end{figure}
 
-    % If we currently we are not in optimal vertex, there are always a neighbour vertex with better objective.
-    % This can be proved intuitively with this sketch: let's assume the feasible solution (the polyhedron) is full-dimensioned.
-    % Then for any vertex, if we construct a ball centering at that vertex, the intersection of ball and polyhedra
-    % would be also full-dimensioned.
-    % We only need to show if we take any vertex as the origin and consider the ray formed by origin and its neighbour,
-    % it gives a cone, identical to the one formed by considering the intersection of all hyperplane incident to origin.
-
+	% If we currently we are not in optimal vertex, there are always a neighbour vertex with better objective.
+	% This can be proved intuitively with this sketch: let's assume the feasible solution (the polyhedron) is full-dimensioned.
+	% Then for any vertex, if we construct a ball centering at that vertex, the intersection of ball and polyhedra
+	% would be also full-dimensioned.
+	% We only need to show if we take any vertex as the origin and consider the ray formed by origin and its neighbour,
+	% it gives a cone, identical to the one formed by considering the intersection of all hyperplane incident to origin.
 
 \end{frame}
 
 \begin{frame}{Background - Simplex Method Running Time}
 
-    Add here the complexity and running time tables for three methods. \\~\
+	Add here the complexity and running time tables for three methods. \\~\
 
-    The three most famous algorithms for LP: Interior Method, Ellipsoid Method, Simplex Method.
+	The three most famous algorithms for LP: Interior Method, Ellipsoid Method, Simplex Method.
 
-    Even though we have Interior Method and Ellipsoid Method, the most widely used algorithm is still Simplex Method 
-    due to its efficiency in practice.
-    % If we currently we are not in optimal vertex, there are always a neighbour vertex with better objective.
-    % This can be proved intuitively with this sketch: let's assume the feasible solution (the polyhedron) is full-dimensioned.
-    % Then for any vertex, if we construct a ball centering at that vertex, the intersection of ball and polyhedra
-    % would be also full-dimensioned.
-    % We only need to show if we take any vertex as the origin and consider the ray formed by origin and its neighbour,
-    % it gives a cone, identical to the one formed by considering the intersection of all hyperplane incident to origin.
-
+	Even though we have Interior Method and Ellipsoid Method, the most widely used algorithm is still Simplex Method
+	due to its efficiency in practice.
+	% If we currently we are not in optimal vertex, there are always a neighbour vertex with better objective.
+	% This can be proved intuitively with this sketch: let's assume the feasible solution (the polyhedron) is full-dimensioned.
+	% Then for any vertex, if we construct a ball centering at that vertex, the intersection of ball and polyhedra
+	% would be also full-dimensioned.
+	% We only need to show if we take any vertex as the origin and consider the ray formed by origin and its neighbour,
+	% it gives a cone, identical to the one formed by considering the intersection of all hyperplane incident to origin.
 
 \end{frame}
 
 \begin{frame}{Previous Work}
-    there are some previous work showing that
-    if $d$, the dimension or i.e. the number of variables in LP, is considered as a constant,
-    then LP can be solved in time linear to $m$, the number of constraints.
+	there are some previous work showing that
+	if $d$, the dimension or i.e. the number of variables in LP, is considered as a constant,
+	then LP can be solved in time linear to $m$, the number of constraints.
 
-    However these methods are: complicated; and running time superexponential to $d$: e.g. $3^{d^2}$.
+	However these methods are: complicated; and running time superexponential to $d$: e.g. $3^{d^2}$.
 
-    we also have a simple algorithm with complexity $O(d^2m) + (\log m)O(d)^{d/2 + O(1)} + O(d^4 \sqrt{m} \log m)$
-    but the analysis is involved.
+	we also have a simple algorithm with complexity $O(d^2m) + (\log m)O(d)^{d/2 + O(1)} + O(d^4 \sqrt{m} \log m)$
+	but the analysis is involved.
 
-    The presented algorithm gives a simple procedure and complexity $O(d!m)$.
-    
+	The presented algorithm gives a simple procedure and complexity $O(d!m)$.
+
 \end{frame}
 
 \begin{frame}
-    We were talking about other algorithms for LP but what do these have to do with this paper?
+	We were talking about other algorithms for LP but what do these have to do with this paper?
 
-    and we talked so much about simplex method.
+	and we talked so much about simplex method.
 
-    But unfortunately it has nothing to do with what we are going to present.
+	But unfortunately it has nothing to do with what we are going to present.
 
-    This algorithm makes use of a very simple idea:
+	This algorithm makes use of a very simple idea:
 
-    Suppose we delete one constraint, and somehow managed to solve the new LP. 
-    Then we check if the opt position conforms with the deleted constraint.
+	Suppose we delete one constraint, and somehow managed to solve the new LP.
+	Then we check if the opt position conforms with the deleted constraint.
 
-    If it doesn't violate the constraint, then we are done. (this is obvious, 
-    since we have a larger feasible area, we certainly have better opt value)
+	If it doesn't violate the constraint, then we are done. (this is obvious,
+	since we have a larger feasible area, we certainly have better opt value)
 
-    If it violates the constraint, then the opt value lies on the hyperplane
-    corresponding to this constraint.
-    This is because if we consider the points along the line connecting 
-    new LP's opt point and original LP's opt point, by convexity we have that
-    we have a better point on the hyperplane.
-    This is also not bad, at least we decrease the dimension (we restrict the problem
-    on a hyperplane, which has dimension $d - 1$), which gives us the intuition to recurssively analyse.
+	If it violates the constraint, then the opt value lies on the hyperplane
+	corresponding to this constraint.
+	This is because if we consider the points along the line connecting
+	new LP's opt point and original LP's opt point, by convexity we have that
+	we have a better point on the hyperplane.
+	This is also not bad, at least we decrease the dimension (we restrict the problem
+	on a hyperplane, which has dimension $d - 1$), which gives us the intuition to recurssively analyse.
 
-    Reducing dimension is certainly something good for computation but how much cost it would take to "transform"?
+	Reducing dimension is certainly something good for computation but how much cost it would take to "transform"?
 
-    Let's analyse the complexity of this step.
-
+	Let's analyse the complexity of this step.
 
 \end{frame}
 
 \begin{frame}{Backward Analysis}
-    Sometimes it's hard to determine the probability if thinking \textit{forward}, while surprisingly straightforward if thinking \textit{backward}. \\~\
+	Sometimes it's hard to determine the probability if thinking \textit{forward}, while surprisingly straightforward if thinking \textit{backward}. \\~\
 
-    \begin{block}{Smallest Enclosing Circle}
-        Given a set of points $P$ in Euclidean plane, compute the smallest circle that contains them all.
-    \end{block}
+	\begin{block}{Smallest Enclosing Circle}
+		Given a set of points $P$ in Euclidean plane, compute the smallest circle that contains them all.
+	\end{block}
 
-    \begin{figure}[r]
-        \includegraphics[width=0.4\linewidth]{pics/smallest_enclosing_circle_illustration.png}
-        % \caption{}
-        % \label{figsmallcircle}
-    \end{figure}
+	\begin{figure}[r]
+		\includegraphics[width=0.4\linewidth]{pics/smallest_enclosing_circle_illustration.png}
+		% \caption{}
+		% \label{figsmallcircle}
+	\end{figure}
 
-    % Given first $i$ points, $\text{Pr}\lf \text{No.}(i+1) \text{ point falls in the interior of circle } C_{i+1} \rf = \;?$ \\~\
+	% Given first $i$ points, $\text{Pr}\lf \text{No.}(i+1) \text{ point falls in the interior of circle } C_{i+1} \rf = \;?$ \\~\
 
-    % Given first $i+1$ points, $\text{Pr}\lf \text{No.}(i+1) \text{ point falls in the interior of circle } C_{i+1} \rf = \;?$
+	% Given first $i+1$ points, $\text{Pr}\lf \text{No.}(i+1) \text{ point falls in the interior of circle } C_{i+1} \rf = \;?$
 
-    % in fact, the two algorithms shares a trick in analysing some algos in common, it's called backward analysis by Seidel. the details are in depth explained in another paper where the author listed several other algorithms that backward analysis can also apply, either to give a simple proof for a previously complicated algorithm or a completely new, yet still simple proof for a new algorithm.
+	% in fact, the two algorithms shares a trick in analysing some algos in common, it's called backward analysis by Seidel. the details are in depth explained in another paper where the author listed several other algorithms that backward analysis can also apply, either to give a simple proof for a previously complicated algorithm or a completely new, yet still simple proof for a new algorithm.
 
-    % the first one is difficult to calculate because it's intrinsicly difficult. The probability differs when we have different set of first i points. So it's indeed hard to give a probability for any set of first i points, but we don't care about the probability for any specific set of first i points whatsoever: we care about only the expectation: as long as the expectation of this probability among all possible sets of first i points is bounded by some value then we are happy.
+	% the first one is difficult to calculate because it's intrinsicly difficult. The probability differs when we have different set of first i points. So it's indeed hard to give a probability for any set of first i points, but we don't care about the probability for any specific set of first i points whatsoever: we care about only the expectation: as long as the expectation of this probability among all possible sets of first i points is bounded by some value then we are happy.
 
-    % the second one is smarter in the sense that it doesn't depend on the set of i+1 points. whichever we choose we always have the same probability
+	% the second one is smarter in the sense that it doesn't depend on the set of i+1 points. whichever we choose we always have the same probability
 
-    % here we need two pictures illustrating this:
-    
+	% here we need two pictures illustrating this:
+
 \end{frame}
 
 \begin{frame}{Backward Analysis - Smallest Enclosing Circle}
-    
-    Emo Welzl gave an efficient random algorithm with surprisingly simple procedure:
 
-    \begin{figure}[h]
-        \includegraphics[width=1.0\linewidth]{pics/smallest_enclosing_circle_psudocode.png}
-        % \caption{Convex hull structure: 5, 4, 3, 2.  There are 73 different structures for $n=17$.}
-        % \label{figstruct}
-    \end{figure}
+	Emo Welzl gave an efficient random algorithm with surprisingly simple procedure:
 
-    % Given first $i$ points, $\text{Pr}\lf \text{No.}(i+1) \text{ point falls in the interior of circle } C_{i+1} \rf = \;?$ \\~\
+	\begin{figure}[h]
+		\includegraphics[width=1.0\linewidth]{pics/smallest_enclosing_circle_psudocode.png}
+		% \caption{Convex hull structure: 5, 4, 3, 2.  There are 73 different structures for $n=17$.}
+		% \label{figstruct}
+	\end{figure}
 
-    % Given first $i+1$ points, $\text{Pr}\lf \text{No.}(i+1) \text{ point falls in the interior of circle } C_{i+1} \rf = \;?$
+	% Given first $i$ points, $\text{Pr}\lf \text{No.}(i+1) \text{ point falls in the interior of circle } C_{i+1} \rf = \;?$ \\~\
 
-    % in fact, the two algorithms shares a trick in analysing some algos in common, it's called backward analysis by Seidel. the details are in depth explained in another paper where the author listed several other algorithms that backward analysis can also apply, either to give a simple proof for a previously complicated algorithm or a completely new, yet still simple proof for a new algorithm.
+	% Given first $i+1$ points, $\text{Pr}\lf \text{No.}(i+1) \text{ point falls in the interior of circle } C_{i+1} \rf = \;?$
 
-    % the first one is difficult to calculate because it's intrinsicly difficult. The probability differs when we have different set of first i points. So it's indeed hard to give a probability for any set of first i points, but we don't care about the probability for any specific set of first i points whatsoever: we care about only the expectation: as long as the expectation of this probability among all possible sets of first i points is bounded by some value then we are happy.
+	% in fact, the two algorithms shares a trick in analysing some algos in common, it's called backward analysis by Seidel. the details are in depth explained in another paper where the author listed several other algorithms that backward analysis can also apply, either to give a simple proof for a previously complicated algorithm or a completely new, yet still simple proof for a new algorithm.
 
-    % the second one is smarter in the sense that it doesn't depend on the set of i+1 points. whichever we choose we always have the same probability
+	% the first one is difficult to calculate because it's intrinsicly difficult. The probability differs when we have different set of first i points. So it's indeed hard to give a probability for any set of first i points, but we don't care about the probability for any specific set of first i points whatsoever: we care about only the expectation: as long as the expectation of this probability among all possible sets of first i points is bounded by some value then we are happy.
 
-    % here we need two pictures illustrating this:
-    
+	% the second one is smarter in the sense that it doesn't depend on the set of i+1 points. whichever we choose we always have the same probability
+
+	% here we need two pictures illustrating this:
+
 \end{frame}
 
 \begin{frame}{General Problem}
-Can we find for a given $k$ a number $g(k)$ such that: from any set containing at least $g(k)$ points it is possible to select $k$ points forming a convex polygon\footnote{Erd\H{o}s, Szekeres: A combinatorial problem in geometry. Compositio Math. (1935)}? Such convex polygon is denoted as convex $k$-gon.
+	Can we find for a given $k$ a number $g(k)$ such that: from any set containing at least $g(k)$ points it is possible to select $k$ points forming a convex polygon\footnote{Erd\H{o}s, Szekeres: A combinatorial problem in geometry. Compositio Math. (1935)}? Such convex polygon is denoted as convex $k$-gon.
 
-\begin{block}{Theorem}
-    $g(k)$ exists for every $k \ge 3$ and $g(k) \le \binom{2k-4}{k-2} + 1$.
-\end{block}
+	\begin{block}{Theorem}
+		$g(k)$ exists for every $k \ge 3$ and $g(k) \le \binom{2k-4}{k-2} + 1$.
+	\end{block}
 
-\only<1> {
+	\only<1> {
 
-\begin{figure}
-\centering
-    \begin{subfigure}[t]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{4gon.png}
-        \caption{YES, convex 4-gon}
-        \label{fig4gon}
-    \end{subfigure}
-    \begin{subfigure}[t]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{not_4gon.png}
-        \caption{NO, not convex}
-        \label{fignot4gon}
-    \end{subfigure}
-\caption{4-gons}
-\label{figgons}
-\end{figure}
+		\begin{figure}
+			\centering
+			\begin{subfigure}[t]{0.3\textwidth}
+				\includegraphics[width=\textwidth]{4gon.png}
+				\caption{YES, convex 4-gon}
+				\label{fig4gon}
+			\end{subfigure}
+			\begin{subfigure}[t]{0.3\textwidth}
+				\includegraphics[width=\textwidth]{not_4gon.png}
+				\caption{NO, not convex}
+				\label{fignot4gon}
+			\end{subfigure}
+			\caption{4-gons}
+			\label{figgons}
+		\end{figure}
 
-}
-% \pause 
-\only<2> {
-\begin{block}{Lower Bound}
-    $g(k) \ge 2^{k-2} + 1$.
-\end{block}
+	}
+	% \pause 
+	\only<2> {
+		\begin{block}{Lower Bound}
+			$g(k) \ge 2^{k-2} + 1$.
+		\end{block}
 
-\begin{alertblock}{Conjecture}
-    $g(k) = 2^{k-2} + 1$.
-\end{alertblock}
-}
-
-\end{frame}
-
-\begin{frame}{Improvements}
-
-\begin{table}
-\begin{tabular}{l | c | c }
-Upper Bound & Author & Year  \\
-\hline \hline
-\\
-$\binom{2k-4}{k-2} + 1$ & Erd\H{o}s, Szekeres & 1934 \\
-\\
-$\binom{2k-4}{k-2}$ & Chung, Graham\footnote{Chung, Graham: Forced convex n-gons in the plane. Discrete Comput. Geom. (1998)} & 1998 \\
-\\
-$2^{k + O(k ^{2/3} \log k)}$ & Suk\footnote{Suk: On the Erd\H{o}s-Szekeres convex polygon problem. J. Am. Math. Soc. (2017)} & 2017 \\
-\\
-$2^{k + O(\sqrt{k \log k})}$ & Holmesen et al.\footnote{Holmsen, Mojarrad, Pach, Tardos: Two extensions of the Erd\H{o}s-Szekeres problem. JEMS (2020)} & 2020
-\end{tabular}
-\caption{Upper Bound}
-\end{table}
-
-Asymptotically, $\Theta(2^{k+o(k)})$ is tight.
-
-\end{frame}
-
-
-\begin{frame}{Improvements}
-
-For small $k$, some results showed the conjectured bound is tight.
-
-\begin{itemize}
-\item 
-When $k=4$, we already see the proof $g(4) = 5$.
-\item 
-When $k=5$, Kalbfleisch et al. first gave a proof\footnote{Kalbfleisch, J.D., Kalbfleisch, J.G., Stanton, R.G.: A combinatorial problem on convex n-gons. In:
-Proceedings of Louisiana Conference on Combinational Graph Theory Computing, Louisiana State University, Baton Rouge (1970)} $g(5) = 9$.
-\item
-When $k=6$, Szekeres and Peters\footnote{Szekeres, G., Peters, L.: Computer solution to the 17-point Erd ˝os–Szekeres problem. ANZIAM J. 48(2),
-151–164 (2006)} first gave a computer-assisted proof $g(6) = 17$  using 3000 GHz Hour, while Mar\'ic\footnote{Marić, Filip. "Fast formal proof of the Erdős–Szekeres conjecture for convex polygons with at most 6 points." Journal of Automated Reasoning 62.3 (2019)} improved it to 1GHz Hour using automatic formal proof.
-\end{itemize}
-
-% \begin{wrapfig}{r}{0.5\textwidth}
-% \centering
-% \includegraphics[width=0.2\textwidth]{convex_hull_struct.png}
-% \caption{Convex hull structure}
-% \end{wrapfig}
+		\begin{alertblock}{Conjecture}
+			$g(k) = 2^{k-2} + 1$.
+		\end{alertblock}
+	}
 
 \end{frame}
 
 \begin{frame}{Improvements}
 
-\begin{figure}[r]
-    \includegraphics[width=0.7\linewidth]{convex_hull_struct.png}
-    \caption{Convex hull structure: 5, 4, 3, 2.  There are 73 different structures for $n=17$.}
-    \label{figstruct}
-\end{figure}
+	\begin{table}
+		\begin{tabular}{l | c | c }
+			Upper Bound                  & Author                                                                                                                   & Year \\
+			\hline \hline
+			\\
+			$\binom{2k-4}{k-2} + 1$      & Erd\H{o}s, Szekeres                                                                                                      & 1934 \\
+			\\
+			$\binom{2k-4}{k-2}$          & Chung, Graham\footnote{Chung, Graham: Forced convex n-gons in the plane. Discrete Comput. Geom. (1998)}                  & 1998 \\
+			\\
+			$2^{k + O(k ^{2/3} \log k)}$ & Suk\footnote{Suk: On the Erd\H{o}s-Szekeres convex polygon problem. J. Am. Math. Soc. (2017)}                            & 2017 \\
+			\\
+			$2^{k + O(\sqrt{k \log k})}$ & Holmesen et al.\footnote{Holmsen, Mojarrad, Pach, Tardos: Two extensions of the Erd\H{o}s-Szekeres problem. JEMS (2020)} & 2020
+		\end{tabular}
+		\caption{Upper Bound}
+	\end{table}
+
+	Asymptotically, $\Theta(2^{k+o(k)})$ is tight.
 
 \end{frame}
 
+\begin{frame}{Improvements}
 
+	For small $k$, some results showed the conjectured bound is tight.
 
+	\begin{itemize}
+		\item
+		      When $k=4$, we already see the proof $g(4) = 5$.
+		\item
+		      When $k=5$, Kalbfleisch et al. first gave a proof\footnote{Kalbfleisch, J.D., Kalbfleisch, J.G., Stanton, R.G.: A combinatorial problem on convex n-gons. In:
+			      Proceedings of Louisiana Conference on Combinational Graph Theory Computing, Louisiana State University, Baton Rouge (1970)} $g(5) = 9$.
+		\item
+		      When $k=6$, Szekeres and Peters\footnote{Szekeres, G., Peters, L.: Computer solution to the 17-point Erd ˝os–Szekeres problem. ANZIAM J. 48(2),
+			      151–164 (2006)} first gave a computer-assisted proof $g(6) = 17$  using 3000 GHz Hour, while Mar\'ic\footnote{Marić, Filip. "Fast formal proof of the Erdős–Szekeres conjecture for convex polygons with at most 6 points." Journal of Automated Reasoning 62.3 (2019)} improved it to 1GHz Hour using automatic formal proof.
+	\end{itemize}
 
-
-\begin{frame}{Holes}
-Similar questions can be asked about $k$-holes, i.e. empty $k$-gons.
-
-
-\begin{figure}
-\centering
-    \begin{subfigure}[t]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{4hole.png}
-        \caption{YES, convex 4-hole}
-        \label{fig4hole}
-    \end{subfigure}
-    \begin{subfigure}[t]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{not_4hole.png}
-        \caption{NO, not empty}
-        \label{fignot4hole}
-    \end{subfigure}
-\caption{4-holes}
-\label{fighole}
-\end{figure}
+	% \begin{wrapfig}{r}{0.5\textwidth}
+	% \centering
+	% \includegraphics[width=0.2\textwidth]{convex_hull_struct.png}
+	% \caption{Convex hull structure}
+	% \end{wrapfig}
 
 \end{frame}
 
-\begin{frame}{Holes}
-    Similar questions can be asked about $k$-holes, i.e. empty $k$-gons. \\~\
+\begin{frame}{Improvements}
 
-
-     Can we find for a given $k$ a number $h(k)$ such that: from any set containing at least $h(k)$ points it is possible to select $k$ points forming $k$-hole?
-     
-\end{frame}
-
-\begin{frame}{Holes}
-    
-\begin{itemize}
-\item 
-When $k=3$, it's trivially true that $h(3) = 3$;
-\item
-When $k=4$, same argument for $4$-gon can be applied to prove $h(4) = 5$.
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}{Holes}
-    
-\begin{itemize}
-\item 
-When $k=5$, Harborth et al.\footnote{Harborth, H.: Konvexe Fünfecke in ebenen Punktmengen. Elem. Math. 33, 116–118 (1978)} proved $h(5)=10$.
-
-\end{itemize}
-
-\begin{figure}
-    \centering
-    
-\end{figure}
-
-
-\begin{figure}
-\centering
-    \begin{subfigure}[t]{0.45\textwidth}
-        \includegraphics[width=\linewidth]{h5.png}
-        \caption{9 points with no 5-hole}
-        \label{fig5h}
-    \end{subfigure}
-    \begin{subfigure}[t]{0.5\textwidth}
-        \includegraphics[width=\textwidth]{5gon-1.png}
-        \caption{At least one 5-gon with only one point inside}
-        \label{fig5gon1}
-    \end{subfigure}
-% \caption{}
-\label{figk5}
-\end{figure}
-
+	\begin{figure}[r]
+		\includegraphics[width=0.7\linewidth]{convex_hull_struct.png}
+		\caption{Convex hull structure: 5, 4, 3, 2.  There are 73 different structures for $n=17$.}
+		\label{figstruct}
+	\end{figure}
 
 \end{frame}
 
 \begin{frame}{Holes}
-    
-\begin{itemize}
+	Similar questions can be asked about $k$-holes, i.e. empty $k$-gons.
 
-
-\item 
-When $k=7$, Horton\footnote{Horton, J. D.: Sets with no empty convex 7-gon. Canad. Math. Bull. 26, 482–484 (1983)} first gave a construction for  arbitrarily large $n$ points with no $7$-hole in 1983. Valtr\footnote{Valtr, P.: Convex independent sets and 7-holes in restricted planar point sets. Discrete Comput.
-Geom. 7, 135–152 (1992)} gave a much simpler inductive construction  in 1992. 
-\end{itemize}
-
-\begin{figure}
-\centering
-        \includegraphics[width=0.5\linewidth]{7hole1.png}
-        \caption{8 / 16 points with no 7-hole}
-
-% \caption{}
-\label{figh7}
-\end{figure}
+	\begin{figure}
+		\centering
+		\begin{subfigure}[t]{0.45\textwidth}
+			\includegraphics[width=\textwidth]{4hole.png}
+			\caption{YES, convex 4-hole}
+			\label{fig4hole}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.45\textwidth}
+			\includegraphics[width=\textwidth]{not_4hole.png}
+			\caption{NO, not empty}
+			\label{fignot4hole}
+		\end{subfigure}
+		\caption{4-holes}
+		\label{fighole}
+	\end{figure}
 
 \end{frame}
 
-
-
 \begin{frame}{Holes}
-    
-\begin{itemize}
-\item 
-When $k=3,4$, not quite interesting.
-\item 
-When $k=5$, Harborth et al. proved $h(5)=10$.
-\item 
+	Similar questions can be asked about $k$-holes, i.e. empty $k$-gons. \\~\
 
-\item 
-When $k=7$, Horton first gave a construction of arbitrarily large $n$ with no $7$-hole in 1983. Valtr gave a much simpler inductive construction  in 1992. 
-\end{itemize}
+	Can we find for a given $k$ a number $h(k)$ such that: from any set containing at least $h(k)$ points it is possible to select $k$ points forming $k$-hole?
+
 \end{frame}
 
+\begin{frame}{Holes}
+
+	\begin{itemize}
+		\item
+		      When $k=3$, it's trivially true that $h(3) = 3$;
+		\item
+		      When $k=4$, same argument for $4$-gon can be applied to prove $h(4) = 5$.
+	\end{itemize}
+\end{frame}
 
 \begin{frame}{Holes}
-    
-\begin{itemize}
-\item 
-When $k=5$, Harborth et al. proved $h(5)=10$.
-\item 
-When $k=6$,lower bound $h(6) \ge 30$ was given by Overmars\footnote{Overmars: Finding sets of points without empty convex 6-gons. Discrete Comput. Geom.(2002)} with computer assistance; and Nicol\'as\footnote{Nicolás: The empty hexagon theorem. Discrete Comput. Geom. (2007)} proved the finiteness by showing $h(6) \le g(25)$ which was then improved by Gerken\footnote{Gerken: Empty convex hexagons in planar point sets. Discrete Comput. Geom. (2008)} to $h(6) \le g(9)$.
-\item 
-When $k=7$, Horton first gave a construction of arbitrarily large $n$ with no $7$-hole in 1983. Valtr gave a much simpler inductive construction  in 1992. 
 
+	\begin{itemize}
+		\item
+		      When $k=5$, Harborth et al.\footnote{Harborth, H.: Konvexe Fünfecke in ebenen Punktmengen. Elem. Math. 33, 116–118 (1978)} proved $h(5)=10$.
 
-\end{itemize}
+	\end{itemize}
+
+	\begin{figure}
+		\centering
+
+	\end{figure}
+
+	\begin{figure}
+		\centering
+		\begin{subfigure}[t]{0.45\textwidth}
+			\includegraphics[width=\linewidth]{h5.png}
+			\caption{9 points with no 5-hole}
+			\label{fig5h}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.5\textwidth}
+			\includegraphics[width=\textwidth]{5gon-1.png}
+			\caption{At least one 5-gon with only one point inside}
+			\label{fig5gon1}
+		\end{subfigure}
+		% \caption{}
+		\label{figk5}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}{Holes}
+
+	\begin{itemize}
+
+		\item
+		      When $k=7$, Horton\footnote{Horton, J. D.: Sets with no empty convex 7-gon. Canad. Math. Bull. 26, 482–484 (1983)} first gave a construction for  arbitrarily large $n$ points with no $7$-hole in 1983. Valtr\footnote{Valtr, P.: Convex independent sets and 7-holes in restricted planar point sets. Discrete Comput.
+			      Geom. 7, 135–152 (1992)} gave a much simpler inductive construction  in 1992.
+	\end{itemize}
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.5\linewidth]{7hole1.png}
+		\caption{8 / 16 points with no 7-hole}
+
+		% \caption{}
+		\label{figh7}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}{Holes}
+
+	\begin{itemize}
+		\item
+		      When $k=3,4$, not quite interesting.
+		\item
+		      When $k=5$, Harborth et al. proved $h(5)=10$.
+		\item
+
+		\item
+		      When $k=7$, Horton first gave a construction of arbitrarily large $n$ with no $7$-hole in 1983. Valtr gave a much simpler inductive construction  in 1992.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Holes}
+
+	\begin{itemize}
+		\item
+		      When $k=5$, Harborth et al. proved $h(5)=10$.
+		\item
+		      When $k=6$,lower bound $h(6) \ge 30$ was given by Overmars\footnote{Overmars: Finding sets of points without empty convex 6-gons. Discrete Comput. Geom.(2002)} with computer assistance; and Nicol\'as\footnote{Nicolás: The empty hexagon theorem. Discrete Comput. Geom. (2007)} proved the finiteness by showing $h(6) \le g(25)$ which was then improved by Gerken\footnote{Gerken: Empty convex hexagons in planar point sets. Discrete Comput. Geom. (2008)} to $h(6) \le g(9)$.
+		\item
+		      When $k=7$, Horton first gave a construction of arbitrarily large $n$ with no $7$-hole in 1983. Valtr gave a much simpler inductive construction  in 1992.
+
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Variations}
 
-What is the least number of convex $k$-gons / $k$-holes determined by any set $S$ of n points in the plane? \\~\ 
+	What is the least number of convex $k$-gons / $k$-holes determined by any set $S$ of n points in the plane? \\~\
 
-What is the least/largest number of non-convex $k$-gons / $k$-holes determined by any set $S$ of n points in the plane? \\~\ 
+	What is the least/largest number of non-convex $k$-gons / $k$-holes determined by any set $S$ of n points in the plane? \\~\
 
-How to efficiently count the number of convex $k$-gons / $k$-holes?
+	How to efficiently count the number of convex $k$-gons / $k$-holes?
 
 \end{frame}
 
 \begin{frame}{Appendix: Least Number of Convex $k$-gons / $k$-holes}
 
-\begin{table}
-\begin{tabular}{c|c}
-k & Least Number \\ 
-\hline \hline
-4 & $\bar{cr}(n)$ \\
-5 & $\Theta(n^5)$ \\ 
-$\le 6$ & $\Theta(n^k)$
-\end{tabular}
+	\begin{table}
+		\begin{tabular}{c|c}
+			k       & Least Number  \\
+			\hline \hline
+			4       & $\bar{cr}(n)$ \\
+			5       & $\Theta(n^5)$ \\
+			$\le 6$ & $\Theta(n^k)$
+		\end{tabular}
 
-\caption{least number of convex $k$-gons}
+		\caption{least number of convex $k$-gons}
 
-\begin{tabular}{c|c}
-k & Least Number \\ 
-\hline \hline
-3 & $n^2 - 32/7n + 22/7 \le \cdot \le 1.619n^2 + o(n^2)$ \\
-4 & $n^2/2 -9/4n -o(n) \le \cdot \le 1.9397n^2 + o(n^2)$ \\ 
-5 & $3n/4-o(n)\le \cdot \le 1.0207n^2 + o(n^2)$
-\end{tabular}
-\caption{least number of convex $k$-gons}
-\end{table}
+		\begin{tabular}{c|c}
+			k & Least Number                                         \\
+			\hline \hline
+			3 & $n^2 - 32/7n + 22/7 \le \cdot \le 1.619n^2 + o(n^2)$ \\
+			4 & $n^2/2 -9/4n -o(n) \le \cdot \le 1.9397n^2 + o(n^2)$ \\
+			5 & $3n/4-o(n)\le \cdot \le 1.0207n^2 + o(n^2)$
+		\end{tabular}
+		\caption{least number of convex $k$-gons}
+	\end{table}
 \end{frame}
 
 \begin{frame}{Appendix: Complexity of convex $k$-gon / $k$-hole counting}
 
-We have algorithms to with complexity $O(n^{k-2})$ and $O(kn^3)$ to count convex $k$-gons; $O(kn^3)$ and $O(kh_3(S))$ to count convex $k$-holes. \\~\ 
+	We have algorithms to with complexity $O(n^{k-2})$ and $O(kn^3)$ to count convex $k$-gons; $O(kn^3)$ and $O(kh_3(S))$ to count convex $k$-holes. \\~\
 
-It's worth noting that the expected value of $h_3(S)$ is proven to be $\Theta(n^2)$ if points are uniformly chosen from a convex bounded body.
-    
+	It's worth noting that the expected value of $h_3(S)$ is proven to be $\Theta(n^2)$ if points are uniformly chosen from a convex bounded body.
+
 \end{frame}
 
 \begin{frame}{Appendix: Ramsey Number}
 
-Surprisingly, the finiteness of $g(k)$ can be proved with hypergraph Ramsey number. \\~\
+	Surprisingly, the finiteness of $g(k)$ can be proved with hypergraph Ramsey number. \\~\
 
-If we color every 3-point subset $(p_i, p_j, p_k), i < j  < k$ with red if the order $(p_i, p_j, p_k)$ is clockwise order; otherwise color it with blue. \\~\
+	If we color every 3-point subset $(p_i, p_j, p_k), i < j  < k$ with red if the order $(p_i, p_j, p_k)$ is clockwise order; otherwise color it with blue. \\~\
 
-Then there exists a $k$-gon if and only if every 3-point subset of $k$ points is colored in the same color. \\~\
+	Then there exists a $k$-gon if and only if every 3-point subset of $k$ points is colored in the same color. \\~\
 
-Thus $g(k) \le R_3(k ,k)$. And it's proven that $R_3(k, k) \le 2^{k^{k-2}\log k}$.
+	Thus $g(k) \le R_3(k ,k)$. And it's proven that $R_3(k, k) \le 2^{k^{k-2}\log k}$.
 
 \end{frame}
 
 \begin{frame}{Appendix: High Dimension Case}
 
-Point set $S$ on $\mathbb{R}^d$ is in general  position if no $d+1$ points lie in a hyperplane; and it's convexly independent if no point lies in the convex hull of remaining points. \\~\
+	Point set $S$ on $\mathbb{R}^d$ is in general  position if no $d+1$ points lie in a hyperplane; and it's convexly independent if no point lies in the convex hull of remaining points. \\~\
 
-Similarly define $g_d(k), h_d(k)$ and we have:
+	Similarly define $g_d(k), h_d(k)$ and we have:
 
-\begin{itemize}
-    \item 
-$g_d(k) \le R_{d+2}(n, d+3)$.
-    \item 
-$h_d(2d+1) \le g_d(4d+1)$, which shows the existence of $h_d(k)$ if $d + 1 \le k \le 2d + 1$.
-    
-\end{itemize}
+	asdfasd asd
+	\begin{itemize}
+		\item asdf
+		\item asdfasd
+		\item asdasdfasdfa
+	\end{itemize}
 
+	\begin{itemize}
+		\item
+		      $g_d(k) \le R_{d+2}(n, d+3)$.
+		\item
+		      $h_d(2d+1) \le g_d(4d+1)$, which shows the existence of $h_d(k)$ if $d + 1 \le k \le 2d + 1$.
+
+	\end{itemize}
 
 \end{frame}
 
-% \end{frame}
+\begin{frame}
+	\begin{center}
+		\begin{tikzpicture}[scale=1.5]
+			% Axes
+			\draw[->] (-2,0) -- (2,0) node[right] {$x_1$};
+			\draw[->] (0,-2) -- (0,2) node[above] {$x_2$};
 
+			% Hyperplane (line: x1 + x2 = 0)
+			\draw[thick, red] (-2,2) -- (2,-2) node[below left] {Hyperplane};
+
+			% Positive class (above the line)
+			\filldraw[blue] (-1,1.5) circle (1.5pt);
+			\filldraw[blue] (0.5,1.2) circle (1.5pt);
+			\filldraw[blue] (-1.5,0.5) circle (1.5pt);
+
+			% Negative class (below the line)
+			\filldraw[green!70!black] (1,-1.2) circle (1.5pt);
+			\filldraw[green!70!black] (-0.5,-1.5) circle (1.5pt);
+			\filldraw[green!70!black] (1.5,-0.5) circle (1.5pt);
+
+			% Labels
+			\node[blue] at (-1,1.7) {Class +1};
+			\node[green!70!black] at (1.5,-1.7) {Class -1};
+		\end{tikzpicture}
+	\end{center}
+\end{frame}
 \end{document}
