@@ -9,11 +9,16 @@
 \documentclass{beamer}
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
+\usetikzlibrary{arrows.meta,calc,intersections}
 \usetheme{Copenhagen}
 \usecolortheme{default}
 \usepackage{subcaption}
 \usepackage{wrapfig}
 \usepackage{svg}
+
+\bibliographystyle{plain} % or any other style
+\newcommand{\supercite}[1]{\textsuperscript{\cite{#1}}}
+
 
 \setbeamerfont{footnote}{size=\tiny}
 
@@ -99,11 +104,37 @@
 
 %%% Simplex Method 1
 \begin{frame}{Background - Geometrical Interpretation}
-	Every constraint corresponds to a hyperplane (a halfspace, precisely).
+	Every constraint corresponds to a hyperplane (a halfspace, precisely). The intersection of several halfspaces gives us a polyhedron.
+	\begin{center}
+		\begin{tikzpicture}[scale=0.8]
 
-	The intersection of several halfspaces gives us a polyhedron.
+			% Axes
+			\draw[->] (-1,0) -- (5.5,0) node[below] {$x$};
+			\draw[->] (0,-1) -- (0,5.5) node[left] {$y$};
 
-	We tend to optimize over this feasible area.
+			% Constraints as lines
+			\draw[thick, name path=c1] (0,3) -- (3,0) node[pos=0.6, above left] {\small $x + y \le 3$};
+
+			% Feasible region (polygon)
+			\fill[blue!20, opacity=0.5]
+			(0,0) --
+			(3, 0) coordinate (opt) --
+			(0,3) --
+			cycle;
+
+			% Mark the feasible region
+			\draw[thick, blue] (0,0) -- (3, 0) -- (0, 3) -- cycle;
+
+			% Objective function direction (e.g., maximize cᵗx = 4x + y)
+			\draw[->, red, thick] (3,0) -- ++(1,0.25) node[above right] {\small $\max 4x + y$};
+
+			\draw[thick, red!60] (2,4) -- (3.25,-1) node [ right] {\small $4x+y=12$ };
+
+			% Optimal point
+			\filldraw[red] (3,0) circle (2pt) node[above left] {Optimal};
+
+		\end{tikzpicture}
+	\end{center}
 \end{frame}
 
 \begin{frame}
@@ -115,11 +146,11 @@
 
 			% Hyperplane (line: x1 + x2 = 0)
 			\draw[thick, black] (-2,2) -- (2,-2) node[below left] {Hyperplane: $x_1 + x_2 = 0$};
-            \node at (1.5, 1.5) {Halfspace: $x_1 + x_2 \ge 0$}
+			\node at (1.5, 1.5) {Halfspace: $x_1 + x_2 \ge 0$};
 
-            \filldraw[green, opacity=0.5] (-2, 2) -- (2, -2) -- (3, -1) -- (-1, 3) -- cycle;
+			\filldraw[green, opacity=0.5] (-2, 2) -- (2, -2) -- (3, -1) -- (-1, 3) -- cycle;
 
-            % \filldraw[blue, opacity=0.5] (-2, 2) -- (2, -2) -- (1, -3) -- (-3, 1) -- cycle;
+			% \filldraw[blue, opacity=0.5] (-2, 2) -- (2, -2) -- (1, -3) -- (-3, 1) -- cycle;
 			% Labels
 		\end{tikzpicture}
 	\end{center}
@@ -134,6 +165,8 @@
 	\begin{exampleblock}{Fact}
 		If there exists any vertex with better objective value than current vertex, we always have a neighbour vertex with better value.
 	\end{exampleblock}
+
+	\pause
 
 	Firstly select any starting vertex. \\~\
 
@@ -172,12 +205,20 @@
 
 \begin{frame}{Background - Simplex Method Running Time}
 
-	Add here the complexity and running time tables for three methods. \\~\
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{|l|l|l|l|l|}
+			\hline
+			\textbf{Algorithm}      & \textbf{Complexity} & \textbf{Speed} & \textbf{Path}        \\ \hline
+			\textbf{Simplex}        & Exponential         & Fast           & Edges of polyhedron  \\ \hline
+			\textbf{Ellipsoid}      & Polynomial          & Slow           & Ellipsoid shrinking  \\ \hline
+			\textbf{Interior Point} & Polynomial          & Fast           & Through the interior \\ \hline
+		\end{tabular}
+		\caption{Comparison of Famous LP Algorithms}
+	\end{table}
 
-	The three most famous algorithms for LP: Interior Method, Ellipsoid Method, Simplex Method.
-
-	Even though we have Interior Method and Ellipsoid Method, the most widely used algorithm is still Simplex Method
-	due to its efficiency in practice.
+	% Even though we have Interior Method and Ellipsoid Method, the most widely used algorithm is still Simplex Method
+	% due to its efficiency in practice.
 	% If we currently we are not in optimal vertex, there are always a neighbour vertex with better objective.
 	% This can be proved intuitively with this sketch: let's assume the feasible solution (the polyhedron) is full-dimensioned.
 	% Then for any vertex, if we construct a ball centering at that vertex, the intersection of ball and polyhedra
@@ -186,48 +227,72 @@
 	% it gives a cone, identical to the one formed by considering the intersection of all hyperplane incident to origin.
 
 \end{frame}
-
 \begin{frame}{Previous Work}
-	there are some previous work showing that
-	if $d$, the dimension or i.e. the number of variables in LP, is considered as a constant,
-	then LP can be solved in time linear to $m$, the number of constraints.
+	When $d$, the dimension of LP (i.e. the number of variables), is considered to be constant,
+	then LP can be solved in time linear in $m$, the number of constraints.
 
-	However these methods are: complicated; and running time superexponential to $d$: e.g. $3^{d^2}$.
+	\vspace{\baselineskip}
 
-	we also have a simple algorithm with complexity $O(d^2m) + (\log m)O(d)^{d/2 + O(1)} + O(d^4 \sqrt{m} \log m)$
+	These methods\supercite{M2} are complicated and running time superexponential to $d$: e.g. $3^{d^2}$.
+
+	\vspace{\baselineskip}
+
+	We also have a simple algorithm\supercite{C2} with complexity $O(d^2m) + (\log m)O(d)^{d/2 + O(1)} + O(d^4 \sqrt{m} \log m)$
 	but the analysis is involved.
 
-	The presented algorithm gives a simple procedure and complexity $O(d!m)$.
+	\vspace{\baselineskip}
 
+	\textbf{The presented algorithm gives a simple procedure and complexity $O(d!m)$.}
 \end{frame}
 
-\begin{frame}
-	We were talking about other algorithms for LP but what do these have to do with this paper?
-
-	and we talked so much about simplex method.
-
-	But unfortunately it has nothing to do with what we are going to present.
+\begin{frame}{Algorithm}
 
 	This algorithm makes use of a very simple idea:
 
-	Suppose we delete one constraint, and somehow managed to solve the new LP.
-	Then we check if the opt position conforms with the deleted constraint.
+	\vspace{\baselineskip}
 
-	If it doesn't violate the constraint, then we are done. (this is obvious,
-	since we have a larger feasible area, we certainly have better opt value)
+    Suppose we delete one constraint $\vec{a} x \ge b$, and somehow managed to solve the new LP.
+	Then we check if the optimum $x^*$ conforms with the deleted constraint.
+
+	\vspace{\baselineskip}
+
+	\begin{itemize}
+        \item If it doesn't violate the constraint, i.e. $\vec{a} x^* \ge b$, then $x^*$ is also 
+            the optimum for original LP, because deleting one constraint  
+            gives us a larger feasible area.
+		\item If it violates the constraint, then the opt value lies on the hyperplane
+		      corresponding to this constraint.  We can project the feasible area 
+              onto the corresponding hyperplane, thus reducing dimension by 1. Then
+              solve the new LP problem with lower dimension.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Algorithm}
+    Let original feasible region be $D$, feasible region after deleting constraint be $D'$, the optimum for $D'$ be $x^*$ .
+    Clearly $D \subseteq D'$ and in this case $x^* \in D$.
+    \begin{align*}
+        u^T x^* \underset{\text{(i)}}{\le} \max_{D}  \underset{\text{(ii)}}{\le} \max_{D'} = u^T x^*
+    \end{align*}
+    
+    (i): $x^* \in D$, by definition of $\max$.
+
+    \vspace{\baselineskip}
+    
+    (ii): Optimizing on a larger area gives no worse optimal value than the original one.
+\end{frame}
+
+\begin{frame}{Algorithm}
+    Let original feasible region be $D$, feasible region after deleting constraint be $D'$, the optimum for $D'$ be $x^*$ .
+    In this case $x^* \notin D$.
 
 	If it violates the constraint, then the opt value lies on the hyperplane
 	corresponding to this constraint.
+
 	This is because if we consider the points along the line connecting
 	new LP's opt point and original LP's opt point, by convexity we have that
 	we have a better point on the hyperplane.
 	This is also not bad, at least we decrease the dimension (we restrict the problem
 	on a hyperplane, which has dimension $d - 1$), which gives us the intuition to recurssively analyse.
-
-	Reducing dimension is certainly something good for computation but how much cost it would take to "transform"?
-
-	Let's analyse the complexity of this step.
-
 \end{frame}
 
 \begin{frame}{Backward Analysis}
@@ -282,24 +347,28 @@
 \end{frame}
 
 \begin{frame}
-    \tdplotsetmaincoords{70}{110} % view angles
+	\tdplotsetmaincoords{70}{110} % view angles
 
-\begin{center}
-\begin{tikzpicture}[tdplot_main_coords, scale=2]
+	\begin{center}
+		\begin{tikzpicture}[tdplot_main_coords, scale=2]
 
-  % Axes
-  \draw[->] (0,0,0) -- (2,0,0) node[anchor=north east]{$x$};
-  \draw[->] (0,0,0) -- (0,2,0) node[anchor=north west]{$y$};
-  \draw[->] (0,0,0) -- (0,0,2) node[anchor=south]{$z$};
+			% Axes
+			\draw[->] (0,0,0) -- (2,0,0) node[anchor=north east]{$x$};
+			\draw[->] (0,0,0) -- (0,2,0) node[anchor=north west]{$y$};
+			\draw[->] (0,0,0) -- (0,0,2) node[anchor=south]{$z$};
 
-  % Hyperplane: e.g. x + y + z = 1 ⇒ plot the triangle (1,0,0), (0,1,0), (0,0,1)
-  \filldraw[fill=red!30, opacity=0.5] (1,0,0) -- (0,1,0) -- (0,0,1) -- cycle;
-  \draw[thick, red] (1,0,0) -- (0,1,0) -- (0,0,1) -- (1,0,0);
+			% Hyperplane: e.g. x + y + z = 1 ⇒ plot the triangle (1,0,0), (0,1,0), (0,0,1)
+			\filldraw[fill=red!30, opacity=0.5] (1,0,0) -- (0,1,0) -- (0,0,1) -- cycle;
+			\draw[thick, red] (1,0,0) -- (0,1,0) -- (0,0,1) -- (1,0,0);
 
-  % Label for the plane
-  \node at (0.4,0.4,0.4) {\scriptsize Hyperplane: $x + y + z = 1$};
+			% Label for the plane
+			\node at (0.4,0.4,0.4) {\scriptsize Hyperplane: $x + y + z = 1$};
 
-\end{tikzpicture}
-\end{center}
+		\end{tikzpicture}
+	\end{center}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+	\bibliography{ref}
 \end{frame}
 \end{document}

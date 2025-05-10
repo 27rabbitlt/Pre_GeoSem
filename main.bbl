@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{C2}
+Kenneth~L. Clarkson.
+\newblock Las vegas algorithms for linear and integer programming when the dimension is small.
+\newblock {\em J. ACM}, 42(2):488–499, March 1995.
+
+\bibitem{M2}
+Nimrod Megiddo.
+\newblock Linear programming in linear time when the dimension is fixed.
+\newblock {\em J. ACM}, 31(1):114–127, January 1984.
+
+\end{thebibliography}
