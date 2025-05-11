@@ -15,6 +15,8 @@
 \usepackage{subcaption}
 \usepackage{wrapfig}
 \usepackage{svg}
+\usepackage{mathtools}
+\usepackage{amsmath}
 
 \bibliographystyle{plain} % or any other style
 \newcommand{\supercite}[1]{\textsuperscript{\cite{#1}}}
@@ -245,56 +247,153 @@
 	\textbf{The presented algorithm gives a simple procedure and complexity $O(d!m)$.}
 \end{frame}
 
-\begin{frame}{Algorithm}
+\begin{frame}{Algorithm - Sketch}
 
 	This algorithm makes use of a very simple idea:
 
 	\vspace{\baselineskip}
 
-    Suppose we delete one constraint $\vec{a} x \ge b$, and somehow managed to solve the new LP.
+	Suppose we delete one constraint $\vec{a} x \ge b$, and somehow managed to solve the new LP.
 	Then we check if the optimum $x^*$ conforms with the deleted constraint.
 
 	\vspace{\baselineskip}
 
 	\begin{itemize}
-        \item If it doesn't violate the constraint, i.e. $\vec{a} x^* \ge b$, then $x^*$ is also 
-            the optimum for original LP, because deleting one constraint  
-            gives us a larger feasible area.
+		\item If it doesn't violate the constraint, i.e. $\vec{a} x^* \ge b$, then $x^*$ is also
+		      the optimum for original LP, because deleting one constraint
+		      gives us a larger feasible area.
 		\item If it violates the constraint, then the opt value lies on the hyperplane
-		      corresponding to this constraint.  We can project the feasible area 
-              onto the corresponding hyperplane, thus reducing dimension by 1. Then
-              solve the new LP problem with lower dimension.
+		      corresponding to this constraint.  We can project the feasible area
+		      onto the corresponding hyperplane, thus reducing dimension by 1. Then
+		      solve the new LP problem with lower dimension.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Algorithm}
-    Let original feasible region be $D$, feasible region after deleting constraint be $D'$, the optimum for $D'$ be $x^*$ .
-    Clearly $D \subseteq D'$ and in this case $x^* \in D$.
-    \begin{align*}
-        u^T x^* \underset{\text{(i)}}{\le} \max_{D}  \underset{\text{(ii)}}{\le} \max_{D'} = u^T x^*
-    \end{align*}
-    
-    (i): $x^* \in D$, by definition of $\max$.
+\begin{frame}{Algorithm - Correctness 1}
+	Let original feasible region be $D$, feasible region after deleting constraint be $D'$, the optimum for $D'$ be $x^*$ .
+	Clearly $D \subseteq D'$ and in this case $x^* \in D$.
+	\begin{align*}
+		u^T x^* \underset{\text{(i)}}{\le} \max_{D}  \underset{\text{(ii)}}{\le} \max_{D'} = u^T x^*
+	\end{align*}
 
+	(i): $x^* \in D$, by definition of $\max$.
+
+	\vspace{\baselineskip}
+
+	(ii): Optimizing on a larger area gives no worse optimal value than the original one.
+\end{frame}
+
+\begin{frame}{Algorithm - Correctness 2}
+	% Let original feasible region be $D$, feasible region after deleting bounding hyperplane $h$ be $D'$, the optimum for $D'$ be $x^*$ .
+	% In this case $x^* \notin D$, then $x^* \in h$.
+
+	% \vspace{\baselineskip}
+	\begin{center}
+		\begin{tikzpicture}
+			% axes 
+			\draw[->] (-0.5, 0) -- (5, 0) node[below] {$x$};
+			\draw[->] (0, -0.5) -- (0, 5) node[left] {$y$};
+			% Define two paths
+			% \path[name path=a] (1, 0) -- (1, 7);
+			% \path[name path=b] (0, 1) -- (7, 1);
+			% \path[name path=c] (4, 0) -- (4, 7);
+			% \path[name path=d] (5, 0) -- (0, 5);
+			% \path[name path=e] (0, 1) -- (5, 6);
+			%
+			% \path[name intersections={of=a and e, by=A}];
+			% \path[name intersections={of=b and a, by=B}];
+			% \path[name intersections={of=c and b, by=C}];
+			% \path[name intersections={of=d and c, by=D}];
+			% \path[name intersections={of=e and d, by=E}];
+			% Calculate intersection
+			\coordinate (A) at (1, 1);
+			\coordinate (B) at (4, 1);
+			\coordinate (C) at (4, 3);
+			\coordinate (D) at (2, 4);
+			\coordinate (E) at (1, 3);
+			\coordinate (F) at (4, 6);
+
+			\fill[blue!60] (A) -- (B) -- (C) -- (D) -- (E) --cycle;
+			\fill[green!20] (C) -- (F) -- (D) --cycle;
+
+			% Draw the intersection point
+			\draw[thick, blue] (A) -- (B);
+			\draw[thick, blue] (B) -- (C);
+			\draw[thick, blue] (C) -- (D);
+            \draw[thick] ($ (C)!-0.2!(D) $) -- ($ (C)!1.2!(D) $) node [left] {$h$};
+			\draw[thick, blue] (D) -- (E);
+			\draw[thick, blue] (E) -- (A);
+
+			\coordinate (X) at (3, 2);
+			\node[circle, label=below:X, fill=black, inner sep=1pt] at (X) {};
+			\coordinate (X') at (4, 6);
+			\node[circle, label=above:X', fill=black, inner sep=1pt] at (X') {};
+
+
+
+            \node at (2, 2) {$D$};
+            \node at (3, 4.5) {$D'$};
+
+            \draw[thick, black] (X) -- (X');
+
+            \node [right] at (5, 4) {A better point lies on $h$};
+            \draw[->, red] (5, 4) -- (3.7, 3.4); 
+		\end{tikzpicture}
+	\end{center}
+
+	% This is because if we consider the points along the line connecting
+	% new LP's opt point and original LP's opt point, by convexity we have that
+	% we have a better point on the hyperplane.
+	% This is also not bad, at least we decrease the dimension (we restrict the problem
+	% on a hyperplane, which has dimension $d - 1$), which gives us the intuition to recurssively analyse.
+\end{frame}
+
+\begin{frame}{Algorithm - Further Problems}
+    Some problems left to deal with:
+
+    \begin{itemize}
+        \item What if after deletion of bounding hyperplane the new problem become unbounded?
+        \item When to stop the recurssion?
+        \item What's next when we reduce the dimension?
+    \end{itemize}
+\end{frame}
+\begin{frame}{Algorithm - Unboundedness and Recurssion}
+    The first two problems can be solved by adding a bounding box, i.e. explicit lower and upper bounds for
+    variables $-\alpha \le x_i \le \alpha$ for all $d$ variables $x_i$.
+    
+    \vspace{\baselineskip}
+
+    Recurssion stops when all original hyperplanes are deleted and it's impossible to have unbounded case.
+
+\end{frame}
+\begin{frame}{Algorithm - Reducing Dimension}
+    Denote the set of $m$ halfspaces as $\mathcal{H}$ and the hyperplane corresponding to the deleted halfspace as $h$.
+    Let $u$ be the optimizing direction and $v$ stands for the optimum point for original LP problem.
+    
     \vspace{\baselineskip}
     
-    (ii): Optimizing on a larger area gives no worse optimal value than the original one.
+    If $\bar{u}$ is the projection of $u$ on $h$ and $\bar{\mathcal{H}} \coloneq \{H \bigcap h \mid H \in \mathcal{H}\}$, then $v$ is exactly 
+    the optimum point for LP problem with constraints $\bar{\mathcal{H}}$ and optimizing direction $\bar{u}$.
 \end{frame}
 
-\begin{frame}{Algorithm}
-    Let original feasible region be $D$, feasible region after deleting constraint be $D'$, the optimum for $D'$ be $x^*$ .
-    In this case $x^* \notin D$.
+\begin{frame}{Time Complexity}
+\[
+T(d, m) \le 
+\begin{cases}
+  O(m) & \text{if } d = 1, \\
+  O(d) & \text{if } m = 1, \\
+  T(d, m - 1) + O(d) + \dfrac{d}{m} O(dm) + \\
+  \dfrac{d}{m} T(d - 1, m - 1) & \text{otherwise}.
+\end{cases}
+\]
 
-	If it violates the constraint, then the opt value lies on the hyperplane
-	corresponding to this constraint.
+Expand everything and we get:
 
-	This is because if we consider the points along the line connecting
-	new LP's opt point and original LP's opt point, by convexity we have that
-	we have a better point on the hyperplane.
-	This is also not bad, at least we decrease the dimension (we restrict the problem
-	on a hyperplane, which has dimension $d - 1$), which gives us the intuition to recurssively analyse.
+\begin{align*}
+    T(d, m) = O(\sum_{1\le i \le d} \frac{i^2}{i!} d! m) = O(d! m)
+\end{align*}
+
 \end{frame}
-
 \begin{frame}{Backward Analysis}
 	Sometimes it's hard to determine the probability if thinking \textit{forward}, while surprisingly straightforward if thinking \textit{backward}. \\~\
 

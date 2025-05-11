@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1746884982.53933 "main.aux" "main.bbl" "main" 1746885754.90817 0
+["bibtex main"] 1746909552.51212 "main.aux" "main.bbl" "main" 1746910708.7755 0
   "./ref.bib" 1746878503.22868 2290 8ecfb62b86bf6bb68f73ed36d526bd1c ""
   "/usr/share/texmf-dist/bibtex/bst/base/plain.bst" 1742685315 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1746885754.77566 2608 ce924208bf9cda49b2ed976db038b1a3 "pdflatex"
+  "main.aux" 1746910708.62765 3124 a476b4c3feab1770b3eb1bb3dc04369d "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1746885753.83189 "main.tex" "main.pdf" "main" 1746885754.90829 0
+["pdflatex"] 1746910707.56412 "main.tex" "main.pdf" "main" 1746910708.77565 0
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1742685315 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1742685315 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1742685315 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -32,6 +32,7 @@
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1742685315 1120 8b7d695260f3cff42e636090a8002094 ""
   "/usr/share/texmf-dist/fonts/tfm/public/sansmathaccent/mathkerncmssi10.tfm" 1742685315 1696 aaa5bbd1f47f001247d42218ce371101 ""
   "/usr/share/texmf-dist/fonts/tfm/public/sansmathaccent/mathkerncmssi8.tfm" 1742685315 1676 fb6c6a335484692abff897d6e8965829 ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1742685315 30251 6afa5cb1d0204815a708a080681d4674 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1742685315 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1742685315 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb" 1742685315 24457 5cbb7bdf209d5d1ce9892a9b80a307cc ""
@@ -207,6 +208,8 @@
   "/usr/share/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty" 1742685315 13815 760b0c02f691ea230f5359c4e1de23a7 ""
   "/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def" 1742685315 29785 9f93ab201fe5dd053afcc6c1bcf7d266 ""
   "/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg" 1742685315 678 4792914a8f45be57bb98413425e4c7af ""
+  "/usr/share/texmf-dist/tex/latex/mathtools/mathtools.sty" 1742685315 62711 3b0ed1d68b598a75677c10d16646d5e5 ""
+  "/usr/share/texmf-dist/tex/latex/mathtools/mhsetup.sty" 1742685315 5582 a43dedf8e5ec418356f1e9dfe5d29fc3 ""
   "/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty" 1742685315 1090 bae35ef70b3168089ef166db3e66f5b2 ""
   "/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty" 1742685315 373 00b204b1d7d095b892ad31a7494b0373 ""
   "/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty" 1742685315 21013 f4ff83d25bb56552493b030f27c075ae ""
@@ -224,6 +227,7 @@
   "/usr/share/texmf-dist/tex/latex/sansmathaccent/sansmathaccent.sty" 1742685315 4282 5d27280ace1239baaa4a225df16125ff ""
   "/usr/share/texmf-dist/tex/latex/svg/svg.sty" 1742685315 43468 671ae75b3a15019004495eff4c0911e8 ""
   "/usr/share/texmf-dist/tex/latex/tikz-3dplot/tikz-3dplot.sty" 1742685315 32488 0c21c95f67b6fe919f5892b4d3ac7813 ""
+  "/usr/share/texmf-dist/tex/latex/tools/calc.sty" 1742685315 10214 61188260d324e94bc2f66825d7d3fdf4 ""
   "/usr/share/texmf-dist/tex/latex/tools/enumerate.sty" 1742685315 3468 ad69b54642e68f9fdf39ec1a16dd7341 ""
   "/usr/share/texmf-dist/tex/latex/tools/shellesc.sty" 1742685315 4121 6039ae6d0916154d7ba5f20a77b9ab2c ""
   "/usr/share/texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict" 1742685315 3535 7dc96051305a7e943219126c49c44cd6 ""
@@ -242,11 +246,11 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1742685315 42087 b0f9697c952c8f5a8eede4134282cb0d ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1745835874 5311557 9da84c45f5b388655502706482323571 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1745962994 2008240 f6b5d6a74670ae1db2a3d2919d25f1a2 ""
-  "main.aux" 1746885754.77566 2608 ce924208bf9cda49b2ed976db038b1a3 "pdflatex"
-  "main.bbl" 1746884982.58063 391 025dfec180b346a9502e5a6c0be3247a "bibtex main"
-  "main.nav" 1746885754.77693 1578 7d703017b143a27d4946b1429e695ab9 "pdflatex"
-  "main.out" 1746885754.33469 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.tex" 1746885753.74235 15393 6079a1ef6f709530684460dbba9688a3 ""
+  "main.aux" 1746910708.62765 3124 a476b4c3feab1770b3eb1bb3dc04369d "pdflatex"
+  "main.bbl" 1746909552.549 391 025dfec180b346a9502e5a6c0be3247a "bibtex main"
+  "main.nav" 1746910708.62896 1950 f200a679ea18d98097b60eff06f164ab "pdflatex"
+  "main.out" 1746910708.08997 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.tex" 1746910707.07022 18749 5a39a0c04708adfa893f600b7c9dc08f ""
   "pics/simplex_method.png" 1745835466.63184 157054 aaa9fc4981a71b411347de8d15d2bd58 ""
   "pics/smallest_enclosing_circle_illustration.png" 1745835466.63269 34707 22e1bb1c3ff50e702930c7c8f54607af ""
   "pics/smallest_enclosing_circle_psudocode.png" 1745835466.63269 51482 1b1d71271131157d5da67dbb58ad640e ""
