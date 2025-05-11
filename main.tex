@@ -31,6 +31,7 @@
 \newcommand{\lx}{\left(}
 \newcommand{\rx}{\right)}
 
+\newcommand{\red}[1]{\textcolor{red}{#1}}
 
 % \title[Seminar Geometry: Combinatorics and Algorithms: Small-dimensional linear programming and convex hulls made easy] %optional
 % {Seminar Geometry: Combinatorics and Algorithms: Small-dimensional linear programming and convex hulls made easy}
@@ -320,7 +321,7 @@
 			\draw[thick, blue] (A) -- (B);
 			\draw[thick, blue] (B) -- (C);
 			\draw[thick, blue] (C) -- (D);
-            \draw[thick] ($ (C)!-0.2!(D) $) -- ($ (C)!1.2!(D) $) node [left] {$h$};
+			\draw[thick] ($ (C)!-0.2!(D) $) -- ($ (C)!1.2!(D) $) node [left] {$h$};
 			\draw[thick, blue] (D) -- (E);
 			\draw[thick, blue] (E) -- (A);
 
@@ -329,15 +330,13 @@
 			\coordinate (X') at (4, 6);
 			\node[circle, label=above:X', fill=black, inner sep=1pt] at (X') {};
 
+			\node at (2, 2) {$D$};
+			\node at (3, 4.5) {$D'$};
 
+			\draw[thick, black] (X) -- (X');
 
-            \node at (2, 2) {$D$};
-            \node at (3, 4.5) {$D'$};
-
-            \draw[thick, black] (X) -- (X');
-
-            \node [right] at (5, 4) {A better point lies on $h$};
-            \draw[->, red] (5, 4) -- (3.7, 3.4); 
+			\node [right] at (5, 4) {A better point lies on $h$};
+			\draw[->, red] (5, 4) -- (3.7, 3.4);
 		\end{tikzpicture}
 	\end{center}
 
@@ -349,49 +348,121 @@
 \end{frame}
 
 \begin{frame}{Algorithm - Further Problems}
-    Some problems left to deal with:
+	Some problems left to deal with:
 
-    \begin{itemize}
-        \item What if after deletion of bounding hyperplane the new problem become unbounded?
-        \item When to stop the recurssion?
-        \item What's next when we reduce the dimension?
-    \end{itemize}
+	\begin{itemize}
+		\item What if after deletion of bounding hyperplane the new problem become unbounded?
+		\item When to stop the recurssion?
+		\item What's next when we reduce the dimension?
+	\end{itemize}
 \end{frame}
 \begin{frame}{Algorithm - Unboundedness and Recurssion}
-    The first two problems can be solved by adding a bounding box, i.e. explicit lower and upper bounds for
-    variables $-\alpha \le x_i \le \alpha$ for all $d$ variables $x_i$.
-    
-    \vspace{\baselineskip}
+	The first two problems can be solved by adding a bounding box, i.e. explicit lower and upper bounds for
+	variables $-\alpha \le x_i \le \alpha$ for all $d$ variables $x_i$.
 
-    Recurssion stops when all original hyperplanes are deleted and it's impossible to have unbounded case.
+	\vspace{\baselineskip}
+
+	Recurssion stops when all original hyperplanes are deleted and it's impossible to have unbounded case.
 
 \end{frame}
 \begin{frame}{Algorithm - Reducing Dimension}
-    Denote the set of $m$ halfspaces as $\mathcal{H}$ and the hyperplane corresponding to the deleted halfspace as $h$.
-    Let $u$ be the optimizing direction and $v$ stands for the optimum point for original LP problem.
+	Denote the set of $m$ halfspaces as $\mathcal{H}$ and the hyperplane corresponding to the deleted halfspace as $h$.
+	Let $u$ be the optimizing direction and $v$ stands for the optimum point for original LP problem.
+
+	\vspace{\baselineskip}
+
+	If $\bar{u}$ is the projection of $u$ on $h$ and $\bar{\mathcal{H}} \coloneq \{H \bigcap h \mid H \in \mathcal{H}\}$, then $v$ is exactly
+	the optimum point for LP problem with constraints $\bar{\mathcal{H}}$ and optimizing direction $\bar{u}$.
+\end{frame}
+\begin{frame}{Algorithm - Time Complexity}
+	When $d = 1$, problem can be solved in $O(m)$.
+
+	\vspace{\baselineskip}
+
+	When $m = 1$, problem can be solved in $O(d)$.
+
+	\vspace{\baselineskip}
+
+	The interesting part is when we delete a constraint and the optimum point changes.
+	Since original optimum point $x$ has exactly $d$ tight constraints (i.e.
+	$x$ is on exactly $d$ hyperplanes) then deleting a constraint uniformly randomly ensures
+	the probability of $x'$ differs from $x$ no more than $d / m$.
+\end{frame}
+\begin{frame}{Algorithm - Time Complexity}
+	When $d = 1$, problem can be solved in $O(m)$.
+
+	\vspace{\baselineskip}
+
+	When $m = 1$, problem can be solved in $O(d)$.
+
+	\vspace{\baselineskip}
+
+	The interesting part is when we delete a constraint and the optimum point changes.
+	\red{Since original optimum point} $\red{x}$ \red{has exactly} $\red{d}$ \red{tight constraints} (i.e.
+	$x$ is on exactly $d$ hyperplanes) then deleting a constraint uniformly randomly ensures
+	the probability of $x'$ differs from $x$ no more than $d / m$.
+\end{frame}
+
+\begin{frame}{Algorithm - Time Complexity}
+	\tdplotsetmaincoords{60}{120}
+
+	\begin{tikzpicture}[tdplot_main_coords, scale=3]
+
+		% Base square vertices
+		\coordinate (A) at (1, 1, 0);
+		\coordinate (B) at (-1, 1, 0);
+		\coordinate (C) at (-1, -1, 0);
+		\coordinate (D) at (1, -1, 0);
+
+		% Tip of the cone
+		\coordinate (O) at (0, 0, 1.5);
+
+		% Draw base
+		% \draw[thick] (A) -- (B) -- (C) -- (D) -- cycle;
+
+		% Draw sides
+		\draw[fill=gray!30, opacity=0.8] (O) -- (B) -- (C) -- cycle;
+		\draw[fill=gray!30, opacity=0.8] (O) -- (C) -- (D) -- cycle;
+		\draw[fill=gray!30, opacity=0.8] (O) -- (D) -- (A) -- cycle;
+		\draw[fill=gray!30, opacity=0.8] (O) -- (A) -- (B) -- cycle;
+
+        \filldraw[fill=red] (O) circle (2pt);
+
+
+	\end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}{Algorithm - Time Complexity}
+    Even if there are $k > d$ constraints are tight at $x$, the optimum point for original LP, at most $d$ of them 
+    has the property that deleting it leads a better optimum.
+
     
     \vspace{\baselineskip}
     
-    If $\bar{u}$ is the projection of $u$ on $h$ and $\bar{\mathcal{H}} \coloneq \{H \bigcap h \mid H \in \mathcal{H}\}$, then $v$ is exactly 
-    the optimum point for LP problem with constraints $\bar{\mathcal{H}}$ and optimizing direction $\bar{u}$.
+    \begin{align*}
+        \exists v, \;\; &a_1^Tv > 0 \\
+                   &a_2^Tv \le 0 \\ 
+                   &\cdots \\
+                   &a_k^Tv \le 0
+    \end{align*}
 \end{frame}
+\begin{frame}{Algorithm - Time Complexity}
+	\[
+		T(d, m) \le
+		\begin{cases}
+			O(m)                         & \text{if } d = 1, \\
+			O(d)                         & \text{if } m = 1, \\
+			T(d, m - 1) + O(d) + \dfrac{d}{m} O(dm) +        \\
+			\dfrac{d}{m} T(d - 1, m - 1) & \text{otherwise}.
+		\end{cases}
+	\]
 
-\begin{frame}{Time Complexity}
-\[
-T(d, m) \le 
-\begin{cases}
-  O(m) & \text{if } d = 1, \\
-  O(d) & \text{if } m = 1, \\
-  T(d, m - 1) + O(d) + \dfrac{d}{m} O(dm) + \\
-  \dfrac{d}{m} T(d - 1, m - 1) & \text{otherwise}.
-\end{cases}
-\]
+	Expand everything and we get:
 
-Expand everything and we get:
-
-\begin{align*}
-    T(d, m) = O(\sum_{1\le i \le d} \frac{i^2}{i!} d! m) = O(d! m)
-\end{align*}
+	\begin{align*}
+		T(d, m) = O(\sum_{1\le i \le d} \frac{i^2}{i!} d! m) = O(d! m)
+	\end{align*}
 
 \end{frame}
 \begin{frame}{Backward Analysis}

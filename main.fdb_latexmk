@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1746909552.51212 "main.aux" "main.bbl" "main" 1746910708.7755 0
+["bibtex main"] 1747003664.09208 "main.aux" "main.bbl" "main" 1747003674.84291 0
   "./ref.bib" 1746878503.22868 2290 8ecfb62b86bf6bb68f73ed36d526bd1c ""
   "/usr/share/texmf-dist/bibtex/bst/base/plain.bst" 1742685315 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1746910708.62765 3124 a476b4c3feab1770b3eb1bb3dc04369d "pdflatex"
+  "main.aux" 1747003674.69565 3640 0606bbedbe9ecc7adb33a17a5e933bc1 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1746910707.56412 "main.tex" "main.pdf" "main" 1746910708.77565 0
+["pdflatex"] 1747003673.50589 "main.tex" "main.pdf" "main" 1747003674.84307 0
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1742685315 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1742685315 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1742685315 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -246,11 +246,11 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1742685315 42087 b0f9697c952c8f5a8eede4134282cb0d ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1745835874 5311557 9da84c45f5b388655502706482323571 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1745962994 2008240 f6b5d6a74670ae1db2a3d2919d25f1a2 ""
-  "main.aux" 1746910708.62765 3124 a476b4c3feab1770b3eb1bb3dc04369d "pdflatex"
-  "main.bbl" 1746909552.549 391 025dfec180b346a9502e5a6c0be3247a "bibtex main"
-  "main.nav" 1746910708.62896 1950 f200a679ea18d98097b60eff06f164ab "pdflatex"
-  "main.out" 1746910708.08997 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.tex" 1746910707.07022 18749 5a39a0c04708adfa893f600b7c9dc08f ""
+  "main.aux" 1747003674.69565 3640 0606bbedbe9ecc7adb33a17a5e933bc1 "pdflatex"
+  "main.bbl" 1747003664.13365 391 025dfec180b346a9502e5a6c0be3247a "bibtex main"
+  "main.nav" 1747003674.69635 2322 7a42a834ece07eabdd2f7c19d3998190 "pdflatex"
+  "main.out" 1747003674.04316 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.tex" 1747003672.53965 21007 d99868dbcc2c073febe317c3486a8808 ""
   "pics/simplex_method.png" 1745835466.63184 157054 aaa9fc4981a71b411347de8d15d2bd58 ""
   "pics/smallest_enclosing_circle_illustration.png" 1745835466.63269 34707 22e1bb1c3ff50e702930c7c8f54607af ""
   "pics/smallest_enclosing_circle_psudocode.png" 1745835466.63269 51482 1b1d71271131157d5da67dbb58ad640e ""
