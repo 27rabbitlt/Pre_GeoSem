@@ -426,26 +426,24 @@
 		\draw[fill=gray!30, opacity=0.8] (O) -- (D) -- (A) -- cycle;
 		\draw[fill=gray!30, opacity=0.8] (O) -- (A) -- (B) -- cycle;
 
-        \filldraw[fill=red] (O) circle (2pt);
-
+		\filldraw[fill=red] (O) circle (2pt);
 
 	\end{tikzpicture}
 
 \end{frame}
 
 \begin{frame}{Algorithm - Time Complexity}
-    Even if there are $k > d$ constraints are tight at $x$, the optimum point for original LP, at most $d$ of them 
-    has the property that deleting it leads a better optimum.
+	Even if there are $k > d$ constraints are tight at $x$, the optimum point for original LP, at most $d$ of them
+	has the property that deleting it leads a better optimum.
 
-    
-    \vspace{\baselineskip}
-    
-    \begin{align*}
-        \exists v, \;\; &a_1^Tv > 0 \\
-                   &a_2^Tv \le 0 \\ 
-                   &\cdots \\
-                   &a_k^Tv \le 0
-    \end{align*}
+	\vspace{\baselineskip}
+
+	\begin{align*}
+		\exists v, \;\; & a_1^Tv > 0   \\
+		                & a_2^Tv \le 0 \\
+		                & \cdots       \\
+		                & a_k^Tv \le 0
+	\end{align*}
 \end{frame}
 \begin{frame}{Algorithm - Time Complexity}
 	\[
@@ -464,6 +462,214 @@
 		T(d, m) = O(\sum_{1\le i \le d} \frac{i^2}{i!} d! m) = O(d! m)
 	\end{align*}
 
+\end{frame}
+
+\begin{frame}{Convex Hull}
+	For a point set $S$ on $\mathbb{R}^d$, assuming general position ( no $d + 1$ points lie in a common hyperplane), we consider
+	construction of convex hull $P$ of point set $S$.
+
+	\vspace{\baselineskip}
+
+	Since each facet can be uniquely determined by the consisting vertices,
+	by using "construction of convex hull" we really mean finding all facets, represented as
+	a $d$-tuple of vertices.
+\end{frame}
+
+\begin{frame}{Terminology}
+	Let $p$ be some point in $\mathbb{R}^d$ in general position with respect to $S$.
+
+	\vspace{\baselineskip}
+
+	We call a facet $F$ of $P$ \textit{visible} from $p$ iff the hyperplane spanned by $F$
+	seperates $P$ and $p$; a facet \textit{obscured} otherwise.
+
+	\vspace{\baselineskip}
+
+	We call a face $G$ \textit{visible} from $p$ iff it's only containted in facets of $P$ that are visible from $p$.
+	\textit{Obscured} faces are defined analogously.
+	We call $G$ a face \textit{horizon} iff it's contained in some visible and some obscured facet.
+\end{frame}
+
+\begin{frame}
+	\tdplotsetmaincoords{60}{120}
+	\begin{center}
+		\begin{tikzpicture}[tdplot_main_coords, scale=2]
+
+			% Define the 8 corners of the cube
+			\coordinate (O) at (0,0,0);
+			\coordinate (A) at (1,0,0);
+			\coordinate (B) at (1,1,0);
+			\coordinate (C) at (0,1,0);
+			\coordinate (D) at (0,0,1);
+			\coordinate (E) at (1,0,1);
+			\coordinate (F) at (1,1,1);
+			\coordinate (G) at (0,1,1);
+
+			\coordinate (P) at ($2*(A)-(B)$);
+
+			\draw[fill=red!50] (O) -- (A) -- (E) -- (D) -- cycle;
+			\draw[fill=blue!50] (O) -- (A) -- (B) -- (C) -- cycle;
+			\draw[fill=blue!50] (B) -- (C) -- (G) -- (F) -- cycle;
+			% Draw front face
+			\draw[thick] (O) -- (A) -- (B) -- (C) -- cycle;
+
+			% Draw back face
+			\draw[thick] (D) -- (E) -- (F) -- (G) -- cycle;
+
+			% Connect front and back faces
+			\draw[thick] (O) -- (D);
+			\draw[thick] (A) -- (E);
+			\draw[thick] (B) -- (F);
+			\draw[thick] (C) -- (G);
+
+			\draw[dashed, thick] (A) -- (P) node[left] {$p$};
+
+		\end{tikzpicture}
+	\end{center}
+	\begin{tikzpicture}[scale=1]
+		\draw[fill=red!50, opacity=0.8] (0,0.3) rectangle +(0.4,0.4);
+		\node[anchor=west] at (0.5,0.5) {Visible};
+
+		\draw[fill=blue!50, opacity=0.8] (0,-0.3) rectangle +(0.4,0.4);
+		\node[anchor=west] at (0.5,-0.1) {Obscured};
+
+		% \draw[fill=gray!50, opacity=0.8] (0,-0.9) rectangle +(0.4,0.4);
+		% \node[anchor=west] at (0.5,-0.7) {Horizon};
+	\end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}
+	\tdplotsetmaincoords{60}{120}
+	\begin{center}
+		\begin{tikzpicture}[tdplot_main_coords, scale=2]
+
+			% Define the 8 corners of the cube
+			\coordinate (O) at (0,0,0);
+			\coordinate (A) at (1,0,0);
+			\coordinate (B) at (1,1,0);
+			\coordinate (C) at (0,1,0);
+			\coordinate (D) at (0,0,1);
+			\coordinate (E) at (1,0,1);
+			\coordinate (F) at (1,1,1);
+			\coordinate (G) at (0,1,1);
+
+			% \coordinate (P) at ($2*(A)-(B)$);
+			\coordinate (P) at (0.5, -1, 0.2);
+
+			% \draw[fill=red!50] (O) -- (A) -- (E) -- (D) -- cycle;
+			%          \draw[fill=blue!50] (O) -- (A) -- (B) -- (C) -- cycle;
+			% \draw[fill=blue!50] (B) -- (C) -- (G) -- (F) -- cycle;
+			% \draw[fill=]
+			% Draw front face
+			\draw[thick] (O) -- (A) -- (B) -- (C) -- cycle;
+
+			% Draw back face
+			\draw[thick] (D) -- (E) -- (F) -- (G) -- cycle;
+
+			% Connect front and back faces
+			\draw[thick] (O) -- (D);
+			\draw[thick] (A) -- (E);
+			\draw[thick] (B) -- (F);
+			\draw[thick] (C) -- (G);
+
+			\filldraw (P) circle (1pt) node[left] {$p$};
+			% \draw[dashed, thick] (A) -- (P) node[left] {$p$};
+
+		\end{tikzpicture}
+	\end{center}
+	\begin{tikzpicture}[scale=1]
+		\draw[fill=red!50, opacity=0.8] (0,0.3) rectangle +(0.4,0.4);
+		\node[anchor=west] at (0.5,0.5) {Visible};
+
+		\draw[fill=blue!50, opacity=0.8] (0,-0.3) rectangle +(0.4,0.4);
+		\node[anchor=west] at (0.5,-0.1) {Obscured};
+
+		% \draw[fill=gray!50, opacity=0.8] (0,-0.9) rectangle +(0.4,0.4);
+		% \node[anchor=west] at (0.5,-0.7) {Horizon};
+	\end{tikzpicture}
+
+\end{frame}
+\begin{frame}{Convex Hull Sketch}
+	Consider an incremental algorithm, from original convex hull $P$ to construct $P' = conv(P \bigcup x)$ where $x$
+	is the new point, and we have the following observations:
+	\begin{itemize}
+		\item no visible face of $P$ is a face of $P'$;
+		\item all obsecured and horizon faces of $P$ are faces of $P'$;
+		\item for each horizon face $G$ of $P$, the pyramid $conv(G \bigcup x)$ is a face of $P'$;
+		\item this yields all faces of $P'$.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Convex Hull Sketch}
+	\begin{enumerate}
+		\item Locate a facet $F$ of $P$ visible from $x$. If no such $F$ exists then $P' = P$.
+		\item Determine set of facets and ridges of $P$ visible from $x$ and horizon ridges.
+		      Delete all visible facets and ridges.
+		\item For each horizon ridge $G$, generate new facet $conv(G \bigcup \{ x \})$ (a new node for facet graph).
+		\item Generate new edges (i.e. ridges of $P'$) for new node in facet graph.
+	\end{enumerate}
+\end{frame}
+\begin{frame}{Convex Hull - Time Complexity}
+	Step $1$: Locate a facet $F$ of $P$ visible from $x$. If no such $F$ exists then $P' = P$.
+
+	\vspace{\baselineskip}
+
+	This can be done by linear programming with $d + 1$ variables indicating parameters of hyperplane and
+	each vertex gives a seperating constraint (the target hyperplane should seperate all vertices and $x$).
+	The objective function is the max distance of vertices and target hyperplane.
+
+	\vspace{\baselineskip}
+
+	If such hyperplane exists, then it must touch some /textit{visible} vertex $v$.
+	Then we iterate all facets containing $v$, among which we can find a seperating facet.
+
+	\vspace{\baselineskip}
+
+	According to the LP algorithm, \textbf{this can be done in $O(i)$ time in $i$-th iteration}.
+\end{frame}
+\begin{frame}{Convex Hull - Time Complexity}
+	Step $2$: Find all visible facets and ridges, then delete them.
+
+	\vspace{\baselineskip}
+
+	This can be done by Depth-First-Search from the facet determined in step $1$.
+	\textbf{The time cost is proportional to number of visible facets}, which can be accounted
+	into the creation step of these facets, amortizedly speaking.
+\end{frame}
+\begin{frame}{Convex Hull - Time Complexity}
+	Step $3$: Generate new facet for each horizon ridge.
+
+	\vspace{\baselineskip}
+
+	All horizon ridges can found in step $2$ and adding new nodes in facet graph
+	\textbf{cost clearly time proportional to number of new facets} $N_x$.
+\end{frame}
+\begin{frame}{Convex Hull - Time Complexity}
+	Step $4$: Generate new edges in facet graph.
+
+	\vspace{\baselineskip}
+
+	Here we need to pair up facets (i.e. nodes in facet graph) to add new edges.
+	For each new facet, we can iterate all ridges (represented as $d-1$-tuple of vertices index).
+	Then by Radix Sort or Trie Tree we can simply identify the corresponding old facet of each ridge.
+
+	\vspace{\baselineskip}
+
+	\textbf{This can be done in $O(i + N_x)$ time.}
+\end{frame}
+\begin{frame}{Convex Hull - Time Complexity}
+Put points of $S$ in random order $p_1, \cdots, p_n$.
+
+\vspace{\baselineskip}
+
+For $i$-th iteration, we compute $P_i$ out of $P_{i-1}$ and the running time is $O(i + N_i)$, where $N_i$ is the number of 
+of facets constaining $p_i$ in $P_i$.
+
+\vspace{\baselineskip}
+
+There are at most $i^{\lfloor \frac{d}{2} \rfloor}$ facets and the probability that a vertex is contained in a facet 
+is $d / i$. So the expected running time for this iteration is $i^{\lfloor \frac{d}{2} \rfloor - 1}$, leading to total complexity of $n^{\lfloor \frac{d}{2} \rfloor }$.
 \end{frame}
 \begin{frame}{Backward Analysis}
 	Sometimes it's hard to determine the probability if thinking \textit{forward}, while surprisingly straightforward if thinking \textit{backward}. \\~\

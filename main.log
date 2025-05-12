@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.4.29)  12 MAY 2025 00:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.4.29)  12 MAY 2025 16:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -939,32 +939,76 @@ Package pdftex.def Info: pics/simplex_method.png  used on input line 207.
 [20
 
 ]
-<pics/smallest_enclosing_circle_illustration.png, id=590, 357.90857pt x 354.03696pt>
-File: pics/smallest_enclosing_circle_illustration.png Graphic file (type png)
-<use pics/smallest_enclosing_circle_illustration.png>
-Package pdftex.def Info: pics/smallest_enclosing_circle_illustration.png  used on input line 493.
-(pdftex.def)             Requested size: 122.91406pt x 121.58104pt.
-
 
 [21
 
- <./pics/smallest_enclosing_circle_illustration.png (PNG copy)>]
-<pics/smallest_enclosing_circle_psudocode.png, id=619, 390.60214pt x 178.52411pt>
-File: pics/smallest_enclosing_circle_psudocode.png Graphic file (type png)
-<use pics/smallest_enclosing_circle_psudocode.png>
-Package pdftex.def Info: pics/smallest_enclosing_circle_psudocode.png  used on input line 517.
-(pdftex.def)             Requested size: 307.28987pt x 140.44682pt.
-
+]
 
 [22
 
- <./pics/smallest_enclosing_circle_psudocode.png (PNG copy)>]
+]
 
 [23
 
-] (./main.bbl)
+]
 
 [24
+
+]
+
+[25
+
+]
+
+[26
+
+]
+
+[27
+
+]
+
+[28
+
+]
+
+[29
+
+]
+
+[30
+
+]
+
+[31
+
+]
+<pics/smallest_enclosing_circle_illustration.png, id=893, 357.90857pt x 354.03696pt>
+File: pics/smallest_enclosing_circle_illustration.png Graphic file (type png)
+<use pics/smallest_enclosing_circle_illustration.png>
+Package pdftex.def Info: pics/smallest_enclosing_circle_illustration.png  used on input line 699.
+(pdftex.def)             Requested size: 122.91406pt x 121.58104pt.
+
+
+[32
+
+ <./pics/smallest_enclosing_circle_illustration.png (PNG copy)>]
+<pics/smallest_enclosing_circle_psudocode.png, id=922, 390.60214pt x 178.52411pt>
+File: pics/smallest_enclosing_circle_psudocode.png Graphic file (type png)
+<use pics/smallest_enclosing_circle_psudocode.png>
+Package pdftex.def Info: pics/smallest_enclosing_circle_psudocode.png  used on input line 723.
+(pdftex.def)             Requested size: 307.28987pt x 140.44682pt.
+
+
+[33
+
+ <./pics/smallest_enclosing_circle_psudocode.png (PNG copy)>]
+
+[34
+
+] (./main.bbl)
+
+[35
 
  </usr/share/texmf-dist/tex/latex/beamer/beamericonarticle.pdf>]
 \tf@nav=\write6
@@ -985,18 +1029,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 29895 strings out of 475171
- 598502 string characters out of 5767095
- 978986 words of memory out of 5000000
- 52263 multiletter control sequences out of 15000+600000
+ 29981 strings out of 475171
+ 599754 string characters out of 5767095
+ 978988 words of memory out of 5000000
+ 52327 multiletter control sequences out of 15000+600000
  570031 words of font info for 76 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  128i,15n,123p,492b,753s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (24 pages, 420078 bytes).
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (35 pages, 448389 bytes).
 PDF statistics:
- 772 PDF objects out of 1000 (max. 8388607)
- 674 compressed objects within 7 object streams
- 51 named destinations out of 1000 (max. 500000)
+ 1084 PDF objects out of 1200 (max. 8388607)
+ 959 compressed objects within 10 object streams
+ 73 named destinations out of 1000 (max. 500000)
  76 words of extra memory for PDF output out of 10000 (max. 10000000)
 
