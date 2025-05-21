@@ -490,39 +490,36 @@
 	We call $G$ a face \textit{horizon} iff it's contained in some visible and some obscured facet.
 \end{frame}
 
+\tikzstyle{vertex}=[
+  circle,
+  draw=black,
+  fill=black,
+  inner sep=0pt,    % No extra padding
+  minimum size=1pt, % Diameter = 6pt (radius = 3pt)
+  text=white,
+  font=\footnotesize
+]
+
 \begin{frame}
-	\tdplotsetmaincoords{60}{120}
 	\begin{center}
-		\begin{tikzpicture}[tdplot_main_coords, scale=2]
+		\begin{tikzpicture}[scale=1]
 
-			% Define the 8 corners of the cube
-			\coordinate (O) at (0,0,0);
-			\coordinate (A) at (1,0,0);
-			\coordinate (B) at (1,1,0);
-			\coordinate (C) at (0,1,0);
-			\coordinate (D) at (0,0,1);
-			\coordinate (E) at (1,0,1);
-			\coordinate (F) at (1,1,1);
-			\coordinate (G) at (0,1,1);
+            \coordinate (a) at (0, 0);
+            \coordinate (b) at (0, 2);
+            \coordinate (c) at (2, 0);
+            \coordinate (d) at (2, 2);
+            \coordinate (e) at (-0.5, 1);
+            \draw[thick,red!50] (a) -- (e);
+            \draw[thick,red!50] (b) -- (e);
+            \draw[thick,blue!50] (b) -- (d);
+            \draw[thick,blue!50] (a) -- (c);
+            \draw[thick,black] (c) -- (d);
+            % \draw[fill=blue!50] (b) -- (c);
 
-			\coordinate (P) at ($2*(A)-(B)$);
+            % \node[fill=black,circle,inner sep=0,minimum size=0.01] at (-2, 1) {$x$};
+            \fill[black] (-1.5, 1) circle[radius=0.1] node[label=below:$x$] {};
 
-			\draw[fill=red!50] (O) -- (A) -- (E) -- (D) -- cycle;
-			\draw[fill=blue!50] (O) -- (A) -- (B) -- (C) -- cycle;
-			\draw[fill=blue!50] (B) -- (C) -- (G) -- (F) -- cycle;
-			% Draw front face
-			\draw[thick] (O) -- (A) -- (B) -- (C) -- cycle;
 
-			% Draw back face
-			\draw[thick] (D) -- (E) -- (F) -- (G) -- cycle;
-
-			% Connect front and back faces
-			\draw[thick] (O) -- (D);
-			\draw[thick] (A) -- (E);
-			\draw[thick] (B) -- (F);
-			\draw[thick] (C) -- (G);
-
-			\draw[dashed, thick] (A) -- (P) node[left] {$p$};
 
 		\end{tikzpicture}
 	\end{center}
@@ -533,48 +530,36 @@
 		\draw[fill=blue!50, opacity=0.8] (0,-0.3) rectangle +(0.4,0.4);
 		\node[anchor=west] at (0.5,-0.1) {Obscured};
 
-		% \draw[fill=gray!50, opacity=0.8] (0,-0.9) rectangle +(0.4,0.4);
-		% \node[anchor=west] at (0.5,-0.7) {Horizon};
 	\end{tikzpicture}
 
 \end{frame}
 
 \begin{frame}
-	\tdplotsetmaincoords{60}{120}
 	\begin{center}
-		\begin{tikzpicture}[tdplot_main_coords, scale=2]
+		\begin{tikzpicture}[scale=1]
 
-			% Define the 8 corners of the cube
-			\coordinate (O) at (0,0,0);
-			\coordinate (A) at (1,0,0);
-			\coordinate (B) at (1,1,0);
-			\coordinate (C) at (0,1,0);
-			\coordinate (D) at (0,0,1);
-			\coordinate (E) at (1,0,1);
-			\coordinate (F) at (1,1,1);
-			\coordinate (G) at (0,1,1);
+            \coordinate (a) at (0, 0);
+            \coordinate (b) at (0, 2);
+            \coordinate (c) at (2, 0);
+            \coordinate (d) at (2, 2);
+            \coordinate (e) at (-0.5, 1);
+            \draw[thick,red!50] (a) -- (e);
+            \draw[thick,red!50] (b) -- (e);
+            \draw[thick,blue!50] (b) -- (d);
+            \draw[thick,blue!50] (a) -- (c);
+            \draw[thick,black] (c) -- (d);
+            % \draw[fill=blue!50] (b) -- (c);
 
-			% \coordinate (P) at ($2*(A)-(B)$);
-			\coordinate (P) at (0.5, -1, 0.2);
+            % \node[fill=black,circle,inner sep=0,minimum size=0.01] at (-2, 1) {$x$};
+            \fill[black] (-1.5, 1) circle[radius=0.1] node[label=below:$x$] {};
 
-			% \draw[fill=red!50] (O) -- (A) -- (E) -- (D) -- cycle;
-			%          \draw[fill=blue!50] (O) -- (A) -- (B) -- (C) -- cycle;
-			% \draw[fill=blue!50] (B) -- (C) -- (G) -- (F) -- cycle;
-			% \draw[fill=]
-			% Draw front face
-			\draw[thick] (O) -- (A) -- (B) -- (C) -- cycle;
+            \fill[red!50] (e) circle[radius=0.1] node[label=below:$x$] {};
+            \fill[gray] (a) circle[radius=0.1]; 
+            \fill[gray] (b) circle[radius=0.1];
+            \fill[blue!50] (c) circle[radius=0.1];
+            \fill[blue!50] (d) circle[radius=0.1];
 
-			% Draw back face
-			\draw[thick] (D) -- (E) -- (F) -- (G) -- cycle;
 
-			% Connect front and back faces
-			\draw[thick] (O) -- (D);
-			\draw[thick] (A) -- (E);
-			\draw[thick] (B) -- (F);
-			\draw[thick] (C) -- (G);
-
-			\filldraw (P) circle (1pt) node[left] {$p$};
-			% \draw[dashed, thick] (A) -- (P) node[left] {$p$};
 
 		\end{tikzpicture}
 	\end{center}
@@ -585,8 +570,9 @@
 		\draw[fill=blue!50, opacity=0.8] (0,-0.3) rectangle +(0.4,0.4);
 		\node[anchor=west] at (0.5,-0.1) {Obscured};
 
-		% \draw[fill=gray!50, opacity=0.8] (0,-0.9) rectangle +(0.4,0.4);
-		% \node[anchor=west] at (0.5,-0.7) {Horizon};
+		\draw[fill=gray, opacity=0.8] (0,-0.9) rectangle +(0.4,0.4);
+		\node[anchor=west] at (0.5,-0.7) {Horizon};
+
 	\end{tikzpicture}
 
 \end{frame}
@@ -601,6 +587,43 @@
 	\end{itemize}
 \end{frame}
 
+\begin{frame}
+	\begin{center}
+		\begin{tikzpicture}[scale=1]
+
+            \coordinate (a) at (0, 0);
+            \coordinate (b) at (0, 2);
+            \coordinate (c) at (2, 0);
+            \coordinate (d) at (2, 2);
+            \draw[thick,red!50] (a) -- (b);
+            \draw[thick,blue!50] (b) -- (d);
+            \draw[thick,blue!50] (a) -- (c);
+            \draw[thick,black] (c) -- (d);
+            % \draw[fill=blue!50] (b) -- (c);
+
+            % \node[fill=black,circle,inner sep=0,minimum size=0.01] at (-2, 1) {$x$};
+            \fill[black] (-1, 1) circle[radius=0.1] node[label=below:$x$] {};
+
+            \fill[gray] (a) circle[radius=0.1];
+            \fill[gray] (b) circle[radius=0.1];
+            \fill[blue!50] (c) circle[radius=0.1];
+            \fill[blue!50] (d) circle[radius=0.1];
+
+		\end{tikzpicture}
+	\end{center}
+	\begin{tikzpicture}[scale=1]
+		\draw[fill=red!50, opacity=0.8] (0,0.3) rectangle +(0.4,0.4);
+		\node[anchor=west] at (0.5,0.5) {Visible};
+
+		\draw[fill=blue!50, opacity=0.8] (0,-0.3) rectangle +(0.4,0.4);
+		\node[anchor=west] at (0.5,-0.1) {Obscured};
+
+		\draw[fill=gray, opacity=0.8] (0,-0.9) rectangle +(0.4,0.4);
+		\node[anchor=west] at (0.5,-0.7) {Horizon};
+
+	\end{tikzpicture}
+
+\end{frame}
 \begin{frame}{Convex Hull Sketch}
 	\begin{enumerate}
 		\item Locate a facet $F$ of $P$ visible from $x$. If no such $F$ exists then $P' = P$.
@@ -720,28 +743,6 @@ is $d / i$. So the expected running time for this iteration is $i^{\lfloor \frac
 
 	% here we need two pictures illustrating this:
 
-\end{frame}
-
-\begin{frame}
-	\tdplotsetmaincoords{70}{110} % view angles
-
-	\begin{center}
-		\begin{tikzpicture}[tdplot_main_coords, scale=2]
-
-			% Axes
-			\draw[->] (0,0,0) -- (2,0,0) node[anchor=north east]{$x$};
-			\draw[->] (0,0,0) -- (0,2,0) node[anchor=north west]{$y$};
-			\draw[->] (0,0,0) -- (0,0,2) node[anchor=south]{$z$};
-
-			% Hyperplane: e.g. x + y + z = 1 ⇒ plot the triangle (1,0,0), (0,1,0), (0,0,1)
-			\filldraw[fill=red!30, opacity=0.5] (1,0,0) -- (0,1,0) -- (0,0,1) -- cycle;
-			\draw[thick, red] (1,0,0) -- (0,1,0) -- (0,0,1) -- (1,0,0);
-
-			% Label for the plane
-			\node at (0.4,0.4,0.4) {\scriptsize Hyperplane: $x + y + z = 1$};
-
-		\end{tikzpicture}
-	\end{center}
 \end{frame}
 
 \begin{frame}[allowframebreaks]{References}
