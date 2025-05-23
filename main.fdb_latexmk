@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1747811764.5176 "main.aux" "main.bbl" "main" 1747812864.13789 0
-  "./ref.bib" 1746878503.22868 2290 8ecfb62b86bf6bb68f73ed36d526bd1c ""
+["bibtex main"] 1747999173.66099 "main.aux" "main.bbl" "main" 1747999521.24138 0
+  "./ref.bib" 1747999166.54552 3265 fa50983ecb3595bdd6b4bcbc19767b15 ""
   "/usr/share/texmf-dist/bibtex/bst/base/plain.bst" 1742685315 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1747812864.00147 5059 2c1dcf751a9f3e344f55fbef11398662 "pdflatex"
+  "main.aux" 1747999521.08812 4989 e7a135a469e6fbb88bf1b1848b8ef102 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1747812862.64586 "main.tex" "main.pdf" "main" 1747812864.13803 0
+["pdflatex"] 1747999519.58277 "main.tex" "main.pdf" "main" 1747999521.24153 0
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1742685315 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1742685315 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1742685315 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -42,7 +42,6 @@
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb" 1742685315 25150 e0d09798d232ab9d00c5c0a8df6cc22d ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb" 1742685315 25168 33771b85f45c82138dd7745db7092d1c ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1742685315 32569 5e5ddc8df908dea60932f3c484a54c0d ""
-  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1742685315 32587 1788b0c1c5b39540c96f5e42ccd6dae8 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1742685315 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1742685315 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
   "/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1742685315 71627 94eb9990bed73c364d7f53f960cc8c5b ""
@@ -247,11 +246,12 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1742685315 42087 b0f9697c952c8f5a8eede4134282cb0d ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1745835874 5311557 9da84c45f5b388655502706482323571 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1745962994 2008240 f6b5d6a74670ae1db2a3d2919d25f1a2 ""
-  "main.aux" 1747812864.00147 5059 2c1dcf751a9f3e344f55fbef11398662 "pdflatex"
-  "main.bbl" 1747811764.5605 391 025dfec180b346a9502e5a6c0be3247a "bibtex main"
-  "main.nav" 1747812864.00277 3345 1f307f4c40ca6d861a1d8f18ad6f4ad7 "pdflatex"
-  "main.out" 1747812863.14284 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.tex" 1747812861.35228 28683 bc7da963dca9e82ec812a15bcb381871 ""
+  "main.aux" 1747999521.08812 4989 e7a135a469e6fbb88bf1b1848b8ef102 "pdflatex"
+  "main.bbl" 1747999173.70562 637 9a6b6d4de98ca806834159e6d803ff97 "bibtex main"
+  "main.nav" 1747999521.08959 3252 20f6a6af4f45b8ebd84455b9a5985db5 "pdflatex"
+  "main.out" 1747999520.13348 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.tex" 1747999519.10024 29043 dbbdaae430e633a443253ac1cf3ec0df ""
+  "pics/not_4hole.png" 1747997516.28794 20676 13348f8a7258f02c4f2b26d0660b6ce8 ""
   "pics/simplex_method.png" 1745835466.63184 157054 aaa9fc4981a71b411347de8d15d2bd58 ""
   "pics/smallest_enclosing_circle_illustration.png" 1745835466.63269 34707 22e1bb1c3ff50e702930c7c8f54607af ""
   "pics/smallest_enclosing_circle_psudocode.png" 1745835466.63269 51482 1b1d71271131157d5da67dbb58ad640e ""

@@ -10,4 +10,9 @@ Nimrod Megiddo.
 \newblock Linear programming in linear time when the dimension is fixed.
 \newblock {\em J. ACM}, 31(1):114–127, January 1984.
 
+\bibitem{emo}
+Emo Welzl.
+\newblock Smallest enclosing disks (balls and ellipsoids).
+\newblock In Hermann Maurer, editor, {\em New Results and New Trends in Computer Science}, pages 359--370, Berlin, Heidelberg, 1991. Springer Berlin Heidelberg.
+
 \end{thebibliography}

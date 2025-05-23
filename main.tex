@@ -107,37 +107,47 @@
 
 %%% Simplex Method 1
 \begin{frame}{Background - Geometrical Interpretation}
-	Every constraint corresponds to a hyperplane (a halfspace, precisely). The intersection of several halfspaces gives us a polyhedron.
-	\begin{center}
-		\begin{tikzpicture}[scale=0.8]
+	% Every constraint corresponds to a hyperplane (a halfspace, precisely). The intersection of several halfspaces gives us a polyhedron.
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{align*}
+				\max \; 4x+y                         \\
+				\text{subject to} \;\;\; x + y \le 3 \\
+				x \ge 0                              \\
+				y \ge 0                              \\
+			\end{align*}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{tikzpicture}[scale=0.6]
 
-			% Axes
-			\draw[->] (-1,0) -- (5.5,0) node[below] {$x$};
-			\draw[->] (0,-1) -- (0,5.5) node[left] {$y$};
+				% Axes
+				\draw[->] (-1,0) -- (5.5,0) node[below] {$x$};
+				\draw[->] (0,-1) -- (0,5.5) node[left] {$y$};
 
-			% Constraints as lines
-			\draw[thick, name path=c1] (0,3) -- (3,0) node[pos=0.6, above left] {\small $x + y \le 3$};
+				% Constraints as lines
+				\draw[thick, name path=c1] (0,3) -- (3,0) node[pos=0.6, above left] {\small $x + y \le 3$};
 
-			% Feasible region (polygon)
-			\fill[blue!20, opacity=0.5]
-			(0,0) --
-			(3, 0) coordinate (opt) --
-			(0,3) --
-			cycle;
+				% Feasible region (polygon)
+				\fill[blue!20, opacity=0.5]
+				(0,0) --
+				(3, 0) coordinate (opt) --
+				(0,3) --
+				cycle;
 
-			% Mark the feasible region
-			\draw[thick, blue] (0,0) -- (3, 0) -- (0, 3) -- cycle;
+				% Mark the feasible region
+				\draw[thick, blue] (0,0) -- (3, 0) -- (0, 3) -- cycle;
 
-			% Objective function direction (e.g., maximize cᵗx = 4x + y)
-			\draw[->, red, thick] (3,0) -- ++(1,0.25) node[above right] {\small $\max 4x + y$};
+				% Objective function direction (e.g., maximize cᵗx = 4x + y)
+				\draw[->, red, thick] (3,0) -- ++(1,0.25) node[above right] {\small $\max 4x + y$};
 
-			\draw[thick, red!60] (2,4) -- (3.25,-1) node [ right] {\small $4x+y=12$ };
+				\draw[thick, red!60] (2,4) -- (3.25,-1) node [ right] {\small $4x+y=12$ };
 
-			% Optimal point
-			\filldraw[red] (3,0) circle (2pt) node[above left] {Optimal};
+				% Optimal point
+				\filldraw[red] (3,0) circle (2pt) node[above left] {Optimal};
 
-		\end{tikzpicture}
-	\end{center}
+			\end{tikzpicture}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \begin{frame}
@@ -158,11 +168,14 @@
 		\end{tikzpicture}
 	\end{center}
 \end{frame}
-\begin{frame}{Background - Simplex Method}
+\begin{frame}{Background - Facts}
 	%% Simplex method is an impressive algorithm that solves lp in an intuitive way.
 	%% 
 	\begin{exampleblock}{Fact}
-		Optimal solution can always be achieved by some vertex.
+		an LP can be bounded, unbounded and infeasible.
+	\end{exampleblock}
+	\begin{exampleblock}{Fact}
+		Optimal solution, if exists, can always be achieved by some vertex.
 	\end{exampleblock}
 
 	\begin{exampleblock}{Fact}
@@ -196,6 +209,7 @@
 		% \caption{}
 		% \label{figsmallcircle}
 	\end{figure}
+	{\centering \tiny Fault-tolerant quantum algorithms - Scientific Figure on ResearchGate. \par}
 
 	% If we currently we are not in optimal vertex, there are always a neighbour vertex with better objective.
 	% This can be proved intuitively with this sketch: let's assume the feasible solution (the polyhedron) is full-dimensioned.
@@ -206,13 +220,13 @@
 
 \end{frame}
 
-\begin{frame}{Background - Simplex Method Running Time}
+\begin{frame}{Background - Overview}
 
 	\begin{table}[h]
 		\centering
 		\begin{tabular}{|l|l|l|l|l|}
 			\hline
-			\textbf{Algorithm}      & \textbf{Complexity} & \textbf{Speed} & \textbf{Path}        \\ \hline
+			\textbf{Algorithm}      & \textbf{Complexity} & \textbf{Speed} & \textbf{Approach}    \\ \hline
 			\textbf{Simplex}        & Exponential         & Fast           & Edges of polyhedron  \\ \hline
 			\textbf{Ellipsoid}      & Polynomial          & Slow           & Ellipsoid shrinking  \\ \hline
 			\textbf{Interior Point} & Polynomial          & Fast           & Through the interior \\ \hline
@@ -232,20 +246,21 @@
 \end{frame}
 \begin{frame}{Previous Work}
 	When $d$, the dimension of LP (i.e. the number of variables), is considered to be constant,
-	then LP can be solved in time linear in $m$, the number of constraints.
+	Megiddo showed that LP can be solved in time linear in $m$, the number of constraint.
 
 	\vspace{\baselineskip}
 
-	These methods\supercite{M2} are complicated and running time superexponential to $d$: e.g. $3^{d^2}$.
+	Megiddo's algorithm\supercite{M2} are complicated and the running time is doubly exponential,
+	while Clarkon and Dyer improved to superexponential to $d$: e.g. $3^{d^2}$.
 
 	\vspace{\baselineskip}
 
-	We also have a simple algorithm\supercite{C2} with complexity $O(d^2m) + (\log m)O(d)^{d/2 + O(1)} + O(d^4 \sqrt{m} \log m)$
+	Clarkon also proposed an algorithm\supercite{C2} with complexity $O(d^2m) + (\log m)O(d)^{d/2 + O(1)} + O(d^4 \sqrt{m} \log m)$
 	but the analysis is involved.
 
 	\vspace{\baselineskip}
 
-	\textbf{The presented algorithm gives a simple procedure and complexity $O(d!m)$.}
+	\textbf{The presented algorithm gives a simple procedure and expected complexity $O(d!m)$.}
 \end{frame}
 
 \begin{frame}{Algorithm - Sketch}
@@ -254,13 +269,13 @@
 
 	\vspace{\baselineskip}
 
-	Suppose we delete one constraint $\vec{a} x \ge b$, and somehow managed to solve the new LP.
+	Suppose we delete one constraint $a^T x \ge b$, and somehow managed to solve the new LP.
 	Then we check if the optimum $x^*$ conforms with the deleted constraint.
 
 	\vspace{\baselineskip}
 
 	\begin{itemize}
-		\item If it doesn't violate the constraint, i.e. $\vec{a} x^* \ge b$, then $x^*$ is also
+		\item If it doesn't violate the constraint, i.e. $a^T x^* \ge b$, then $x^*$ is also
 		      the optimum for original LP, because deleting one constraint
 		      gives us a larger feasible area.
 		\item If it violates the constraint, then the opt value lies on the hyperplane
@@ -270,21 +285,21 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Algorithm - Correctness 1}
-	Let original feasible region be $D$, feasible region after deleting constraint be $D'$, the optimum for $D'$ be $x^*$ .
-	Clearly $D \subseteq D'$ and in this case $x^* \in D$.
-	\begin{align*}
-		u^T x^* \underset{\text{(i)}}{\le} \max_{D}  \underset{\text{(ii)}}{\le} \max_{D'} = u^T x^*
-	\end{align*}
+% \begin{frame}{Algorithm - Correctness 1}
+% 	Let original feasible region be $D$, feasible region after deleting constraint be $D'$, the optimum for $D'$ be $x^*$ .
+% 	Clearly $D \subseteq D'$ and in this case $x^* \in D$.
+% 	\begin{align*}
+% 		u^T x^* \underset{\text{(i)}}{\le} \max_{D}  \underset{\text{(ii)}}{\le} \max_{D'} = u^T x^*
+% 	\end{align*}
+%
+% 	(i): $x^* \in D$, by definition of $\max$.
+%
+% 	\vspace{\baselineskip}
+%
+% 	(ii): Optimizing on a larger area gives no worse optimal value than the original one.
+% \end{frame}
 
-	(i): $x^* \in D$, by definition of $\max$.
-
-	\vspace{\baselineskip}
-
-	(ii): Optimizing on a larger area gives no worse optimal value than the original one.
-\end{frame}
-
-\begin{frame}{Algorithm - Correctness 2}
+\begin{frame}{Algorithm - Illustration of Second Case}
 	% Let original feasible region be $D$, feasible region after deleting bounding hyperplane $h$ be $D'$, the optimum for $D'$ be $x^*$ .
 	% In this case $x^* \notin D$, then $x^* \in h$.
 
@@ -353,7 +368,8 @@
 	\begin{itemize}
 		\item What if after deletion of bounding hyperplane the new problem become unbounded?
 		\item When to stop the recurssion?
-		\item What's next when we reduce the dimension?
+		\item How can we do \textit{projection} efficiency?
+		\item How to deal with infeasibility?
 	\end{itemize}
 \end{frame}
 \begin{frame}{Algorithm - Unboundedness and Recurssion}
@@ -363,23 +379,22 @@
 	\vspace{\baselineskip}
 
 	Recurssion stops when all original hyperplanes are deleted and it's impossible to have unbounded case.
-
 \end{frame}
-\begin{frame}{Algorithm - Reducing Dimension}
-	Denote the set of $m$ halfspaces as $\mathcal{H}$ and the hyperplane corresponding to the deleted halfspace as $h$.
-	Let $u$ be the optimizing direction and $v$ stands for the optimum point for original LP problem.
+\begin{frame}{Algorithm - Projection and Infeasibility}
+	Projection can be done by Gaussian elimination. Since we know a constraint has to be
+	tight, we can get an equation and then we substitute it back into constraints, which
+	gives us an inequality system with $d-1$ variables.
 
 	\vspace{\baselineskip}
 
-	If $\bar{u}$ is the projection of $u$ on $h$ and $\bar{\mathcal{H}} \coloneq \{H \bigcap h \mid H \in \mathcal{H}\}$, then $v$ is exactly
-	the optimum point for LP problem with constraints $\bar{\mathcal{H}}$ and optimizing direction $\bar{u}$.
+	Infeasibility can then be detected in dimension $1$.
 \end{frame}
 \begin{frame}{Algorithm - Time Complexity}
 	When $d = 1$, problem can be solved in $O(m)$.
 
 	\vspace{\baselineskip}
 
-	When $m = 1$, problem can be solved in $O(d)$.
+	When $m = 0$, problem can be solved in $O(d)$.
 
 	\vspace{\baselineskip}
 
@@ -393,7 +408,7 @@
 
 	\vspace{\baselineskip}
 
-	When $m = 1$, problem can be solved in $O(d)$.
+	When $m = 0$, problem can be solved in $O(d)$.
 
 	\vspace{\baselineskip}
 
@@ -403,7 +418,7 @@
 	the probability of $x'$ differs from $x$ no more than $d / m$.
 \end{frame}
 
-\begin{frame}{Algorithm - Time Complexity}
+\begin{frame}{Algorithm - Degenerate Vertex}
 	\tdplotsetmaincoords{60}{120}
 
 	\begin{tikzpicture}[tdplot_main_coords, scale=3]
@@ -438,12 +453,12 @@
 
 	\vspace{\baselineskip}
 
-	\begin{align*}
-		\exists v, \;\; & a_1^Tv > 0   \\
-		                & a_2^Tv \le 0 \\
-		                & \cdots       \\
-		                & a_k^Tv \le 0
-	\end{align*}
+	% \begin{align*}
+	% 	\exists v, \;\; & a_1^Tv > 0   \\
+	% 	                & a_2^Tv \le 0 \\
+	% 	                & \cdots       \\
+	% 	                & a_k^Tv \le 0
+	% \end{align*}
 \end{frame}
 \begin{frame}{Algorithm - Time Complexity}
 	\[
@@ -470,9 +485,12 @@
 
 	\vspace{\baselineskip}
 
-	Since each facet can be uniquely determined by the consisting vertices,
-	by using "construction of convex hull" we really mean finding all facets, represented as
-	a $d$-tuple of vertices.
+
+	\begin{figure}[h]
+		\includegraphics[width=0.4\linewidth]{pics/not_4hole.png}
+		% \caption{Convex hull structure: 5, 4, 3, 2.  There are 73 different structures for $n=17$.}
+		% \label{figstruct}
+	\end{figure}
 \end{frame}
 
 \begin{frame}{Terminology}
@@ -491,35 +509,33 @@
 \end{frame}
 
 \tikzstyle{vertex}=[
-  circle,
-  draw=black,
-  fill=black,
-  inner sep=0pt,    % No extra padding
-  minimum size=1pt, % Diameter = 6pt (radius = 3pt)
-  text=white,
-  font=\footnotesize
+circle,
+draw=black,
+fill=black,
+inner sep=0pt,    % No extra padding
+minimum size=1pt, % Diameter = 6pt (radius = 3pt)
+text=white,
+font=\footnotesize
 ]
 
 \begin{frame}
 	\begin{center}
 		\begin{tikzpicture}[scale=1]
 
-            \coordinate (a) at (0, 0);
-            \coordinate (b) at (0, 2);
-            \coordinate (c) at (2, 0);
-            \coordinate (d) at (2, 2);
-            \coordinate (e) at (-0.5, 1);
-            \draw[thick,red!50] (a) -- (e);
-            \draw[thick,red!50] (b) -- (e);
-            \draw[thick,blue!50] (b) -- (d);
-            \draw[thick,blue!50] (a) -- (c);
-            \draw[thick,black] (c) -- (d);
-            % \draw[fill=blue!50] (b) -- (c);
+			\coordinate (a) at (0, 0);
+			\coordinate (b) at (0, 2);
+			\coordinate (c) at (2, 0);
+			\coordinate (d) at (2, 2);
+			\coordinate (e) at (-0.5, 1);
+			\draw[thick,red!50] (a) -- (e);
+			\draw[thick,red!50] (b) -- (e);
+			\draw[thick,blue!50] (b) -- (d);
+			\draw[thick,blue!50] (a) -- (c);
+			\draw[thick,black] (c) -- (d);
+			% \draw[fill=blue!50] (b) -- (c);
 
-            % \node[fill=black,circle,inner sep=0,minimum size=0.01] at (-2, 1) {$x$};
-            \fill[black] (-1.5, 1) circle[radius=0.1] node[label=below:$x$] {};
-
-
+			% \node[fill=black,circle,inner sep=0,minimum size=0.01] at (-2, 1) {$x$};
+			\fill[black] (-1.5, 1) circle[radius=0.1] node[label=below:$x$] {};
 
 		\end{tikzpicture}
 	\end{center}
@@ -538,28 +554,26 @@
 	\begin{center}
 		\begin{tikzpicture}[scale=1]
 
-            \coordinate (a) at (0, 0);
-            \coordinate (b) at (0, 2);
-            \coordinate (c) at (2, 0);
-            \coordinate (d) at (2, 2);
-            \coordinate (e) at (-0.5, 1);
-            \draw[thick,red!50] (a) -- (e);
-            \draw[thick,red!50] (b) -- (e);
-            \draw[thick,blue!50] (b) -- (d);
-            \draw[thick,blue!50] (a) -- (c);
-            \draw[thick,black] (c) -- (d);
-            % \draw[fill=blue!50] (b) -- (c);
+			\coordinate (a) at (0, 0);
+			\coordinate (b) at (0, 2);
+			\coordinate (c) at (2, 0);
+			\coordinate (d) at (2, 2);
+			\coordinate (e) at (-0.5, 1);
+			\draw[thick,red!50] (a) -- (e);
+			\draw[thick,red!50] (b) -- (e);
+			\draw[thick,blue!50] (b) -- (d);
+			\draw[thick,blue!50] (a) -- (c);
+			\draw[thick,black] (c) -- (d);
+			% \draw[fill=blue!50] (b) -- (c);
 
-            % \node[fill=black,circle,inner sep=0,minimum size=0.01] at (-2, 1) {$x$};
-            \fill[black] (-1.5, 1) circle[radius=0.1] node[label=below:$x$] {};
+			% \node[fill=black,circle,inner sep=0,minimum size=0.01] at (-2, 1) {$x$};
+			\fill[black] (-1.5, 1) circle[radius=0.1] node[label=below:$x$] {};
 
-            \fill[red!50] (e) circle[radius=0.1] node[label=below:$x$] {};
-            \fill[gray] (a) circle[radius=0.1]; 
-            \fill[gray] (b) circle[radius=0.1];
-            \fill[blue!50] (c) circle[radius=0.1];
-            \fill[blue!50] (d) circle[radius=0.1];
-
-
+			\fill[red!50] (e) circle[radius=0.1] node[] {};
+			\fill[gray] (a) circle[radius=0.1];
+			\fill[gray] (b) circle[radius=0.1];
+			\fill[blue!50] (c) circle[radius=0.1];
+			\fill[blue!50] (d) circle[radius=0.1];
 
 		\end{tikzpicture}
 	\end{center}
@@ -576,7 +590,7 @@
 	\end{tikzpicture}
 
 \end{frame}
-\begin{frame}{Convex Hull Sketch}
+\begin{frame}{Convex Hull - Facts}
 	Consider an incremental algorithm, from original convex hull $P$ to construct $P' = conv(P \bigcup x)$ where $x$
 	is the new point, and we have the following observations:
 	\begin{itemize}
@@ -591,23 +605,30 @@
 	\begin{center}
 		\begin{tikzpicture}[scale=1]
 
-            \coordinate (a) at (0, 0);
-            \coordinate (b) at (0, 2);
-            \coordinate (c) at (2, 0);
-            \coordinate (d) at (2, 2);
-            \draw[thick,red!50] (a) -- (b);
-            \draw[thick,blue!50] (b) -- (d);
-            \draw[thick,blue!50] (a) -- (c);
-            \draw[thick,black] (c) -- (d);
-            % \draw[fill=blue!50] (b) -- (c);
+			\coordinate (a) at (0, 0);
+			\coordinate (b) at (0, 2);
+			\coordinate (c) at (2, 0);
+			\coordinate (d) at (2, 2);
+			\coordinate (e) at (-0.5, 1);
+            \coordinate (new) at (-1.5, 1);
+			\draw[thick,red!50] (a) -- (e);
+			\draw[thick,red!50] (b) -- (e);
+			\draw[thick,blue!50] (b) -- (d);
+			\draw[thick,blue!50] (a) -- (c);
+			\draw[thick,black] (c) -- (d);
+			% \draw[fill=blue!50] (b) -- (c);
 
-            % \node[fill=black,circle,inner sep=0,minimum size=0.01] at (-2, 1) {$x$};
-            \fill[black] (-1, 1) circle[radius=0.1] node[label=below:$x$] {};
+			% \node[fill=black,circle,inner sep=0,minimum size=0.01] at (-2, 1) {$x$};
+			\fill[black] (-1.5, 1) circle[radius=0.1] node[label=below:$x$] {};
 
-            \fill[gray] (a) circle[radius=0.1];
-            \fill[gray] (b) circle[radius=0.1];
-            \fill[blue!50] (c) circle[radius=0.1];
-            \fill[blue!50] (d) circle[radius=0.1];
+            \draw[dashed] (new) -- (a);
+            \draw[dashed] (new) -- (b);
+
+			\fill[red!50] (e) circle[radius=0.1] node[] {X};
+			\fill[gray] (a) circle[radius=0.1];
+			\fill[gray] (b) circle[radius=0.1];
+			\fill[blue!50] (c) circle[radius=0.1];
+			\fill[blue!50] (d) circle[radius=0.1];
 
 		\end{tikzpicture}
 	\end{center}
@@ -621,6 +642,9 @@
 		\draw[fill=gray, opacity=0.8] (0,-0.9) rectangle +(0.4,0.4);
 		\node[anchor=west] at (0.5,-0.7) {Horizon};
 
+        \draw[dashed] (0.05, -1.4) -- (0.4, -1.4);
+		\node[anchor=west] at (0.5,-1.4) {New Facet};
+
 	\end{tikzpicture}
 
 \end{frame}
@@ -633,7 +657,7 @@
 		\item Generate new edges (i.e. ridges of $P'$) for new node in facet graph.
 	\end{enumerate}
 \end{frame}
-\begin{frame}{Convex Hull - Time Complexity}
+\begin{frame}{Convex Hull - Step 1}
 	Step $1$: Locate a facet $F$ of $P$ visible from $x$. If no such $F$ exists then $P' = P$.
 
 	\vspace{\baselineskip}
@@ -644,14 +668,14 @@
 
 	\vspace{\baselineskip}
 
-	If such hyperplane exists, then it must touch some /textit{visible} vertex $v$.
+	If such hyperplane exists, it must touch some visible vertex $v$.
 	Then we iterate all facets containing $v$, among which we can find a seperating facet.
 
 	\vspace{\baselineskip}
 
 	According to the LP algorithm, \textbf{this can be done in $O(i)$ time in $i$-th iteration}.
 \end{frame}
-\begin{frame}{Convex Hull - Time Complexity}
+\begin{frame}{Convex Hull - Step 2}
 	Step $2$: Find all visible facets and ridges, then delete them.
 
 	\vspace{\baselineskip}
@@ -666,7 +690,7 @@
 	\vspace{\baselineskip}
 
 	All horizon ridges can found in step $2$ and adding new nodes in facet graph
-	\textbf{cost clearly time proportional to number of new facets} $N_x$.
+	\textbf{cost clearly time proportional to number of new facets} $N_i$.
 \end{frame}
 \begin{frame}{Convex Hull - Time Complexity}
 	Step $4$: Generate new edges in facet graph.
@@ -679,30 +703,32 @@
 
 	\vspace{\baselineskip}
 
-	\textbf{This can be done in $O(i + N_x)$ time.}
+	\textbf{This can be done in $O(i + N_i)$ time.}
 \end{frame}
 \begin{frame}{Convex Hull - Time Complexity}
-Put points of $S$ in random order $p_1, \cdots, p_n$.
+	Put points of $S$ in random order $p_1, \cdots, p_n$.
 
-\vspace{\baselineskip}
+	\vspace{\baselineskip}
 
-For $i$-th iteration, we compute $P_i$ out of $P_{i-1}$ and the running time is $O(i + N_i)$, where $N_i$ is the number of 
-of facets constaining $p_i$ in $P_i$.
+	For $i$-th iteration, we compute $P_i$ out of $P_{i-1}$ and the running time is $O(i + N_i)$, where $N_i$ is the number of
+	of facets constaining $p_i$ in $P_i$.
 
-\vspace{\baselineskip}
+	\vspace{\baselineskip}
 
-There are at most $i^{\lfloor \frac{d}{2} \rfloor}$ facets and the probability that a vertex is contained in a facet 
-is $d / i$. So the expected running time for this iteration is $i^{\lfloor \frac{d}{2} \rfloor - 1}$, leading to total complexity of $n^{\lfloor \frac{d}{2} \rfloor }$.
+	There are at most $i^{\lfloor \frac{d}{2} \rfloor}$ facets and the probability that a vertex is contained in a facet
+	is $d / i$. So the expected running time for this iteration is $i^{\lfloor \frac{d}{2} \rfloor - 1}$, leading to total complexity of $n^{\lfloor \frac{d}{2} \rfloor }$.
+
+    Notice this procedure doesn't work when $d \le 3$.
 \end{frame}
-\begin{frame}{Backward Analysis}
-	Sometimes it's hard to determine the probability if thinking \textit{forward}, while surprisingly straightforward if thinking \textit{backward}. \\~\
+\begin{frame}{Smallest Enclosing Circle}
+    An algorithm inspired by this paper is proposed by Emo Welzl\cite{emo}.
 
 	\begin{block}{Smallest Enclosing Circle}
 		Given a set of points $P$ in Euclidean plane, compute the smallest circle that contains them all.
 	\end{block}
 
 	\begin{figure}[r]
-		\includegraphics[width=0.4\linewidth]{pics/smallest_enclosing_circle_illustration.png}
+		\includegraphics[width=0.3\linewidth]{pics/smallest_enclosing_circle_illustration.png}
 		% \caption{}
 		% \label{figsmallcircle}
 	\end{figure}
@@ -721,9 +747,9 @@ is $d / i$. So the expected running time for this iteration is $i^{\lfloor \frac
 
 \end{frame}
 
-\begin{frame}{Backward Analysis - Smallest Enclosing Circle}
+\begin{frame}{Smallest Enclosing Circle}
 
-	Emo Welzl gave an efficient random algorithm with surprisingly simple procedure:
+	An efficient random algorithm with surprisingly simple procedure:
 
 	\begin{figure}[h]
 		\includegraphics[width=1.0\linewidth]{pics/smallest_enclosing_circle_psudocode.png}
